@@ -4,14 +4,14 @@ package ga.dryco.redditJerk;
 public enum ConfigValues {
     API_URL("http://api.reddit.com/"),
     OAUTH_URL("https://oauth.reddit.com/");
-    private String value;
+    private String url;
 
-    private ConfigValues(String value) {
-        this.value = value;
+    private ConfigValues(String url) {
+        this.url = url;
     }
 
     @Override
     public String toString() {
-        return value;
+        return url;
     }
 }
