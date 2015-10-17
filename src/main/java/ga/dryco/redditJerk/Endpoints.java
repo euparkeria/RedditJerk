@@ -17,7 +17,8 @@ public enum Endpoints {
     HIDE("/api/hide"),
     UNHIDE("/api/unhide"),
     REPLY("/api/comment"),
-    EDIT("/api/editusertext");
+    EDIT("/api/editusertext"),
+    SUB_MODERATORS("/r/%s/about/moderators/");
 
     private String url;
 

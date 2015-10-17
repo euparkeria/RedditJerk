@@ -24,4 +24,5 @@ public interface Reddit {
     Post edit(String fullnameId, String text) throws IOException;
     void hide(String fullnameId) throws IOException;
     void unhide(String fullnameId) throws IOException;
+    List<User> getSubredditModerators(String subreddit) throws IOException;
 }

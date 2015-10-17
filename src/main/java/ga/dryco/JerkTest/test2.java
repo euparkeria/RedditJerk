@@ -6,6 +6,7 @@ import ga.dryco.redditJerk.controllers.*;
 
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -18,6 +19,11 @@ public class test2 {
         User user = red.getUser("IamWithTheDconsNow");
         System.out.println(user.getCommentKarma());
         System.out.println(user.getName());
+        List<User> modList = red.getSubredditModerators("nottheonion");
+
+        for(User usr:modList){
+            System.out.println(usr.getName());
+        }
 
 
 /**

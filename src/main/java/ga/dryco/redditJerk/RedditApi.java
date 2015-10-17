@@ -128,6 +128,23 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
+    public List<User> getSubredditModerators(String subreddit) throws IOException {
+        String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
+
+        List<User> returnUserList = new ArrayList<>();
+
+        List<ModeratorsData> modListing = this.getDataObject(requesturl, ModeratorsListing.class).getData().getChildren();
+
+        for (ModeratorsData modD : modListing) {
+
+            returnUserList.add(this.getUser(modD.getName()));
+
+        }
+
+        return  returnUserList;
+
+    }
+
     /**
      *
      * @param fullnameId Thing Id
