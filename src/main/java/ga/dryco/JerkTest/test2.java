@@ -17,20 +17,20 @@ public class test2 {
     public static void main(String[] args) throws MalformedURLException {
         Reddit red = RedditApi.getRedditInstance("TestClient34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
-        User user = red.getUser("IamWithTheDconsNow3");
+        User user = red.getUser("IamWithTheDconsNow");
         System.out.println(user);
 
 
-       /**
+
         List<User> modList = red.getSubredditModerators("nottheonion");
 
         for(User usr:modList){
             System.out.println(usr.getName());
         }
 
-*/
-/**
-        RedditThread post = red.getThread("https://www.reddit.com/r/videos/comments/3onrrk/worlds_most_pathetic_elevator_chime/");
+
+
+        RedditThread post = red.getRedditThread("https://www.reddit.com/r/videos/comments/3onrrk/worlds_most_pathetic_elevator_chime/");
 
         for(Comment comm:post.getFlatComments()){
             System.out.println(comm.getBody());
@@ -39,8 +39,8 @@ public class test2 {
         System.out.println(post.getFlatComments().size());
         System.out.println(post.getMoreComments().size());
         System.out.println(post.getMoreComments().get(0).getData().getChildren().get(0));
-*/
-        /**
+
+
         List<Comment> clist = user.getComments(299, "new");
         System.out.println(clist.size());
         for(Comment comm:clist){
@@ -60,7 +60,7 @@ public class test2 {
         }
 
         System.out.println(user.getKarmaBalance("MMORPG", 20));
-*/
+
 
     }
 }
