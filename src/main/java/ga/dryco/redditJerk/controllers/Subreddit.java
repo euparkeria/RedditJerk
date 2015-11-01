@@ -14,15 +14,15 @@ public class Subreddit extends T5Data {
 
     Reddit rApi = RedditApi.getRedditInstance();
 
-    public List<Link> getHot(Integer limit) throws IOException {
+    public List<Link> getHot(Integer limit)  {
        return rApi.getSubredditPage(super.getDisplayName(), limit, "hot");
     }
 
-    public List<Link> getNew(Integer limit) throws IOException {
+    public List<Link> getNew(Integer limit)  {
         return rApi.getSubredditPage(super.getDisplayName(), limit, "new");
     }
 
-    public List<Link> getTop(Integer limit) throws IOException {
+    public List<Link> getTop(Integer limit)  {
         return rApi.getSubredditPage(super.getDisplayName(), limit, "top");
     }
 

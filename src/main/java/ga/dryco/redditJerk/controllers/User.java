@@ -4,7 +4,6 @@ import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.datamodels.T2Data;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,24 +14,24 @@ public class User extends T2Data {
 
     Reddit rApi = RedditApi.getRedditInstance();
 
-    public Overview getOverview(Integer limit, String sort) throws IOException {
+    public Overview getOverview(Integer limit, String sort)  {
         return rApi.getOverview(super.getName(), limit, sort);
     }
 
-    public List<Link> getSubmitted(Integer limit) throws IOException {
+    public List<Link> getSubmitted(Integer limit)  {
        return rApi.getUserSubmissions(super.getName(), limit, "new");
     }
 
-    public List<Link> getSubmitted(Integer limit, String sort) throws IOException {
+    public List<Link> getSubmitted(Integer limit, String sort)  {
         return rApi.getUserSubmissions(super.getName(), limit, sort);
     }
 
-    public List<Comment> getComments(Integer limit) throws IOException {
+    public List<Comment> getComments(Integer limit)  {
         return rApi.getUserComments(super.getName(), limit, "new");
     }
 
 
-    public List<Comment> getComments(Integer limit, String sort) throws IOException {
+    public List<Comment> getComments(Integer limit, String sort)  {
         return rApi.getUserComments(super.getName(), limit, sort);
     }
 
@@ -41,7 +40,7 @@ public class User extends T2Data {
      * Extra utility functions
      */
 
-    public Integer getKarmaBalance(String subreddit, Integer limit) throws IOException {
+    public Integer getKarmaBalance(String subreddit, Integer limit)  {
         Integer karma = 0;
         for(Comment comm: this.getComments(limit)){
             if(Objects.equals(comm.getSubreddit(), subreddit)){

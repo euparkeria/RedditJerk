@@ -31,9 +31,6 @@ public class test {
             json4 = rc.get("http://api.reddit.com/user/IamWithTheDConsNow/comments");
             json5 = rc.get("https://api.reddit.com/r/history/comments/39wnnr/who_will_announce_the_queen_is_dead_long_live_the/");
             json6 = rc.get("https://api.reddit.com/user/IamWithTheDConsNow/?limit=100");
-
-        } catch (IOException e){
-            System.out.println("Error" + e.toString());
         } catch (IllegalArgumentException e){
             System.out.println("Invalid url");
         }

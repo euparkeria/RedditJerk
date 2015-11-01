@@ -14,23 +14,23 @@ public class Comment extends T1Data implements Post {
 
     Reddit rApi = RedditApi.getRedditInstance();
 
-    public Comment reply(String text) throws IOException{
+    public Comment reply(String text) {
         return rApi.reply(super.getName(), text);
     }
 
-    public void downvote() throws IOException {
+    public void downvote()  {
         rApi.vote(super.getName(), "-1");
     }
 
-    public void upwnvote() throws IOException {
+    public void upwnvote()  {
         rApi.vote(super.getName(), "1");
     }
 
-    public void delete() throws IOException{
+    public void delete() {
         rApi.delete(super.getName());
     }
 
-    public Comment edit(String text) throws IOException {
+    public Comment edit(String text)  {
         return (Comment) rApi.edit(super.getName(), text);
     }
 

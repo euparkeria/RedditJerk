@@ -6,6 +6,7 @@ import ga.dryco.redditJerk.controllers.*;
 
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 
@@ -13,19 +14,21 @@ import java.util.List;
  * Created by mekoneko on 7/14/2015.
  */
 public class test2 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws MalformedURLException {
         Reddit red = RedditApi.getRedditInstance("TestClient34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
-        User user = red.getUser("IamWithTheDconsNow");
-        System.out.println(user.getCommentKarma());
-        System.out.println(user.getName());
+        User user = red.getUser("IamWithTheDconsNow3");
+        System.out.println(user);
+
+
+       /**
         List<User> modList = red.getSubredditModerators("nottheonion");
 
         for(User usr:modList){
             System.out.println(usr.getName());
         }
 
-
+*/
 /**
         RedditThread post = red.getThread("https://www.reddit.com/r/videos/comments/3onrrk/worlds_most_pathetic_elevator_chime/");
 

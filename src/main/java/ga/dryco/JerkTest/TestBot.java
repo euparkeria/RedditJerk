@@ -25,19 +25,15 @@ public class TestBot {
         keywords.add("Fl Studio");
         keywords.add("Ahsoka");
         Reddit red = RedditApi.getRedditInstance("TestClient34");
-        try {
-            red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+
         while (true){
             List<Link> all = null;
             Integer sbmCount = 0;
-            try {
-                all = red.getSubredditPage("all", submsLastRun + 50, "new");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            all = red.getSubredditPage("all", submsLastRun + 50, "new");
+
             assert all != null;
             for(Link sbm: all){
                 if(!done.contains(sbm.getName())){
@@ -46,7 +42,8 @@ public class TestBot {
                     done.add(sbm.getName());
                 }
 
-            }System.out.println("Already done:" + done.size() + "\nThis run:" + sbmCount);
+            }
+            System.out.println("Already done:" + done.size() + "\nThis run:" + sbmCount);
             submsLastRun = sbmCount;
             try {
                 System.out.println("Sleeping");

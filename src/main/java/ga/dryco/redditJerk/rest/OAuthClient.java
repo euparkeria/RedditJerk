@@ -2,6 +2,7 @@ package ga.dryco.redditJerk.rest;
 
 import com.google.gson.Gson;
 import ga.dryco.redditJerk.datamodels.AuthData;
+import ga.dryco.redditJerk.exceptions.OAuthClientException;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
@@ -39,7 +40,7 @@ public final class OAuthClient {
         this.userAgent = useragent;
     }
 
-    public void renewAccessToken() throws IOException {
+    public void renewAccessToken() {
         //if current time is bigger or equal to token's time of aquiering + expire value - 3 minutes
         if(authData != null){
             if(Instant.now().getEpochSecond() >= (authInfo.getTimeAquired() + authData.getExpiresIn() - 180)){
@@ -52,7 +53,7 @@ public final class OAuthClient {
 
     }
 
-    public void OAuthAuthenitcation(AuthInfo ainfo) throws IOException {
+    public void OAuthAuthenitcation(AuthInfo ainfo) {
         if(this.authInfo == null){
             this.authInfo = ainfo;
         }
@@ -62,7 +63,7 @@ public final class OAuthClient {
     }
 
 
-    public AuthData getAccessTokenJson() throws IOException {
+    public AuthData getAccessTokenJson() {
         CredentialsProvider provider = new BasicCredentialsProvider();
         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(authInfo.getClientId(), authInfo.getSecret());
         provider.setCredentials(AuthScope.ANY, credentials);
@@ -79,7 +80,7 @@ public final class OAuthClient {
     }
 
 
-    public String get(String url) throws IOException, IllegalArgumentException {
+    public String get(String url) throws IllegalArgumentException {
         renewAccessToken();
         HttpClient getClient = HttpClientBuilder.create().setUserAgent(this.userAgent).build();
         HttpGet request = new HttpGet(url);
@@ -87,14 +88,19 @@ public final class OAuthClient {
         if(this.authData != null){
             request.addHeader("Authorization","bearer " + this.authData.getAccessToken());
         }
-        HttpResponse response = getClient.execute(request);
+        HttpResponse response = null;
+        try {
+            response = getClient.execute(request);
+        } catch (IOException e) {
+            throw new OAuthClientException("Oauth Get error", e);
+        }
 
         return this.responseReader(response);
 
     }
 
 
-    public String post(String url, List<NameValuePair> urlParameters) throws IOException {
+    public String post(String url, List<NameValuePair> urlParameters) {
         renewAccessToken();
 
         HttpPost post = new HttpPost(url);
@@ -108,22 +114,30 @@ public final class OAuthClient {
             e.printStackTrace();
         }
 
-        HttpResponse response = this.postClient.execute(post);
+        HttpResponse response;
+        try {
+            response = this.postClient.execute(post);
+        } catch (IOException e) {
+            throw new OAuthClientException("Oath Client IO Error" , e);
+        }
 
 
         return this.responseReader(response);
 
     }
 
-    private String responseReader(HttpResponse response) throws IOException {
+    private String responseReader(HttpResponse response) {
         String line;
 
         StringBuilder sb = new StringBuilder();
 
-        BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
-
-        while ((line = rd.readLine()) != null) {
-            sb.append(line);
+        try {
+            BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
+            while ((line = rd.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         //System.out.println(sb.toString());

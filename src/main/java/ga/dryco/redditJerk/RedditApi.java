@@ -10,6 +10,7 @@ import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public final class RedditApi implements Reddit  {
      * @param clientId oAuth app id
      * @param secret oAuth Secret
      */
-    public User login(String username, String password, String clientId, String secret) throws IOException {
+    public User login(String username, String password, String clientId, String secret) {
         this.ApiURL = ConfigValues.OAUTH_URL.toString();
         client.OAuthAuthenitcation(new AuthInfo(username, password, clientId, secret));
 
@@ -71,10 +72,10 @@ public final class RedditApi implements Reddit  {
      *
      * @param username user to get
      * @return User
-     * @throws IOException
+     *
      */
 
-    public User getUser(String username) throws IOException {
+    public User getUser(String username) {
         String requesturl = String.format(ApiURL + Endpoints.USER, username);
 
         T2 t2 = this.getDataObject(requesturl, T2.class);
@@ -82,13 +83,13 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    public User me() throws IOException {
+    public User me() {
         String requesturl = ApiURL + Endpoints.ME;
         return this.getDataObject(requesturl, User.class);
 
     }
 
-    public RedditThread getThread(String url) throws IOException {
+    public RedditThread getRedditThread(String url) throws MalformedURLException {
         URL purl = new URL(url);
         url = purl.getPath();
 
@@ -97,38 +98,38 @@ public final class RedditApi implements Reddit  {
         return this.getDataObject(requesturl, RedditThread.class);
     }
 
-    public Overview getOverview(String username, Integer limit, String sort) throws IOException {
+    public Overview getOverview(String username, Integer limit, String sort)  {
         String requesturl = String.format(ApiURL + Endpoints.OVERVIEW, username, limit, sort);
 
         return this.getDataObject(requesturl, Overview.class);
     }
 
-    public Subreddit getSubreddit(String subreddit) throws IOException {
+    public Subreddit getSubreddit(String subreddit)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT, subreddit);
 
         return this.getDataObject(requesturl, T5.class).getData();
     }
 
 
-    public final List<Comment> getUserComments(String username, Integer limit, String sort) throws IOException {
+    public final List<Comment> getUserComments(String username, Integer limit, String sort) {
         String requesturl = String.format(ApiURL + Endpoints.USER_COMMENTS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
     }
 
-    public final List<Link> getUserSubmissions(String username, Integer limit, String sort) throws IOException {
+    public final List<Link> getUserSubmissions(String username, Integer limit, String sort)  {
         String requesturl = String.format(ApiURL + Endpoints.USER_SUBS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
-    public List<Link> getSubredditPage(String subreddit, Integer limit, String sort) throws IOException {
+    public List<Link> getSubredditPage(String subreddit, Integer limit, String sort)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit );
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
-    public List<User> getSubredditModerators(String subreddit) throws IOException {
+    public List<User> getSubredditModerators(String subreddit) {
         String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
 
         List<User> returnUserList = new ArrayList<>();
@@ -149,9 +150,9 @@ public final class RedditApi implements Reddit  {
      *
      * @param fullnameId Thing Id
      * @param dir "1" for upvote, "-1" for downvote
-     * @throws IOException
+     *
      */
-    public void vote(String fullnameId, String dir) throws IOException {
+    public void vote(String fullnameId, String dir)  {
         String requesturl = ApiURL + Endpoints.VOTE;
         List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
@@ -160,7 +161,7 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    public final Link Submit(String subreddit, String title, String bodyOrUrl, String kind) throws IOException {
+    public final Link Submit(String subreddit, String title, String bodyOrUrl, String kind)  {
         String requesturl = ApiURL + Endpoints.SUBMIT;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -178,7 +179,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public final void delete(String fullnameId) throws IOException {
+    public final void delete(String fullnameId) {
         String requesturl = ApiURL + Endpoints.DELETE;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -190,7 +191,7 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    public final void hide(String fullnameId) throws IOException {
+    public final void hide(String fullnameId)  {
         String requesturl = ApiURL + Endpoints.HIDE;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -199,7 +200,7 @@ public final class RedditApi implements Reddit  {
         client.post(requesturl, urlParameters);
     }
 
-    public final void unhide(String fullnameId) throws IOException{
+    public final void unhide(String fullnameId) {
         String requesturl = ApiURL + Endpoints.UNHIDE;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -212,9 +213,9 @@ public final class RedditApi implements Reddit  {
      *
      * @param fullnameId Thing Id to which to reply
      * @param text Reply body
-     * @throws IOException
+     *
      */
-    public Comment reply(String fullnameId, String text) throws IOException {
+    public Comment reply(String fullnameId, String text)  {
         String requesturl = ApiURL + Endpoints.REPLY;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -228,7 +229,7 @@ public final class RedditApi implements Reddit  {
 
 
 
-    public final Post edit(String fullnameId, String text) throws IOException {
+    public final Post edit(String fullnameId, String text) {
         String requesturl = ApiURL + Endpoints.EDIT;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -248,7 +249,7 @@ public final class RedditApi implements Reddit  {
 
 
     private <T extends Thing<? extends ListingData>, E extends Thing> List<Post> getListings
-            (String requesturl, Integer limit, Class<T> type) throws IOException {
+            (String requesturl, Integer limit, Class<T> type)  {
         Double querynum = (limit / 100) + 0.5;
         String afterid = "";
         List<T> listinglist = new ArrayList<>();
@@ -275,7 +276,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    private <T> T getDataObject(String requesturl, Class<T> type) throws IOException {
+    private <T> T getDataObject(String requesturl, Class<T> type)  {
 
         return gson.fromJson(client.get(requesturl), type);
 

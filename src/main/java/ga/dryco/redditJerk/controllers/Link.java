@@ -15,23 +15,23 @@ public class Link extends T3Data implements Post{
 
     Reddit rApi = RedditApi.getRedditInstance();
 
-    public void downvote() throws IOException {
+    public void downvote()  {
         rApi.vote(super.getName(), "-1");
     }
 
-    public void upwnvote() throws IOException {
+    public void upwnvote()  {
         rApi.vote(super.getName(), "1");
     }
 
-    public Comment reply(String text) throws IOException {
+    public Comment reply(String text)  {
         return rApi.reply(super.getName(), text);
     }
 
-    public void delete() throws IOException{
+    public void delete() {
         rApi.delete(super.getName());
     }
 
-    public Link edit(String text) throws IOException {
+    public Link edit(String text)  {
         return (Link) rApi.edit(super.getName(), text);
     }
 

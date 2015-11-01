@@ -2,7 +2,6 @@ package ga.dryco.redditJerk.datamodels;
 
 import com.google.gson.annotations.Expose;
 
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 /**
