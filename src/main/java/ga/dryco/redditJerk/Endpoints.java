@@ -11,6 +11,7 @@ public enum Endpoints {
     USER_COMMENTS("user/%s/comments/?limit=%d&sort=%s"),
     USER_SUBS("user/%s/submitted/?limit=%d&sort=%s"),
     SUBREDDIT_PAGE("/r/%s/%s/?limit=%d"),
+    SUBREDDIT_COMMENTS("/r/%s/comments/?limit=%d"),
     VOTE("/api/vote"),
     SUBMIT("/api/submit"),
     DELETE( "/api/del"),
@@ -19,6 +20,8 @@ public enum Endpoints {
     REPLY("/api/comment"),
     EDIT("/api/editusertext"),
     SUB_MODERATORS("/r/%s/about/moderators/");
+
+
 
     private String url;
 

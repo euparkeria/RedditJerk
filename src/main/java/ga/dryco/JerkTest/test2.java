@@ -10,17 +10,19 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 
-/**
- * Created by mekoneko on 7/14/2015.
- */
 public class test2 {
     public static void main(String[] args) throws MalformedURLException {
         Reddit red = RedditApi.getRedditInstance("TestClient34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+
+        List<Comment> onionComList = red.getSubredditComments("movies", 20);
+        for(Comment com: onionComList){
+            System.out.println(com.getBody());
+        }
+
+        /**
         User user = red.getUser("IamWithTheDconsNow");
         System.out.println(user);
-
-
 
         List<User> modList = red.getSubredditModerators("nottheonion");
 
@@ -60,7 +62,7 @@ public class test2 {
         }
 
         System.out.println(user.getKarmaBalance("MMORPG", 20));
-
+*/
 
     }
 }

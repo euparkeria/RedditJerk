@@ -9,7 +9,6 @@ import ga.dryco.redditJerk.rest.AuthInfo;
 import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -127,6 +126,13 @@ public final class RedditApi implements Reddit  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit );
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
+    }
+
+    public List<Comment> getSubredditComments(String subreddit, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_COMMENTS, subreddit, limit);
+
+        return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
+
     }
 
     public List<User> getSubredditModerators(String subreddit) {
