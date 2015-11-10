@@ -15,22 +15,25 @@ public class test2 {
         Reddit red = RedditApi.getRedditInstance("TestClient34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
+        /**
+
         List<Comment> onionComList = red.getSubredditComments("movies", 20);
         for(Comment com: onionComList){
             System.out.println(com.getBody());
         }
+*/
 
-        /**
-        User user = red.getUser("IamWithTheDconsNow");
-        System.out.println(user);
+        User user = red.getUser("The_Packeteer");
 
-        List<User> modList = red.getSubredditModerators("nottheonion");
-
-        for(User usr:modList){
-            System.out.println(usr.getName());
-        }
+        List<Link> linklist123 = user.getSubmitted(199);
+        System.out.println(linklist123.size());
 
 
+
+
+
+
+/**
 
         RedditThread post = red.getRedditThread("https://www.reddit.com/r/videos/comments/3onrrk/worlds_most_pathetic_elevator_chime/");
 

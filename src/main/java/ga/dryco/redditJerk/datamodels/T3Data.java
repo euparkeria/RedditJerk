@@ -14,15 +14,14 @@ import com.google.gson.annotations.SerializedName;
  * */
 
 @Generated("org.jsonschema2pojo")
-public class T3Data {
+public class T3Data extends PostData {
 
     @Expose
     private String domain;
     @SerializedName("banned_by")
     @Expose
     private Object bannedBy;
-    @Expose
-    private String subreddit;
+
     @SerializedName("selftext_html")
     @Expose
     private Object selftextHtml;
@@ -57,11 +56,7 @@ public class T3Data {
     @Expose
     private Object reportReasons;
     @Expose
-    private String author;
-    @Expose
     private Object media;
-    @Expose
-    private Integer score;
     @SerializedName("approved_by")
     @Expose
     private Object approvedBy;
@@ -167,25 +162,6 @@ public class T3Data {
      */
     public void setBannedBy(Object bannedBy) {
         this.bannedBy = bannedBy;
-    }
-
-
-    /**
-     *
-     * @return
-     * The subreddit
-     */
-    public String getSubreddit() {
-        return subreddit;
-    }
-
-    /**
-     *
-     * @param subreddit
-     * The subreddit
-     */
-    public void setSubreddit(String subreddit) {
-        this.subreddit = subreddit;
     }
 
     /**
@@ -422,23 +398,6 @@ public class T3Data {
         this.reportReasons = reportReasons;
     }
 
-    /**
-     *
-     * @return
-     * The author
-     */
-    public String getAuthor() {
-        return author;
-    }
-
-    /**
-     *
-     * @param author
-     * The author
-     */
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     /**
      *
@@ -458,23 +417,7 @@ public class T3Data {
         this.media = media;
     }
 
-    /**
-     *
-     * @return
-     * The score
-     */
-    public Integer getScore() {
-        return score;
-    }
 
-    /**
-     *
-     * @param score
-     * The score
-     */
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 
     /**
      *

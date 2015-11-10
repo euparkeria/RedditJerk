@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * data of type t1 represents a Comment type object,
  * all comments are t1 objects
@@ -13,7 +14,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * */
 
-public class T1Data {
+public class T1Data extends PostData{
 
     @SerializedName("subreddit_id")
     @Expose
@@ -52,13 +53,11 @@ public class T1Data {
     @SerializedName("report_reasons")
     @Expose
     private Object reportReasons;
-    @Expose
-    private String author;
+
     @SerializedName("parent_id")
     @Expose
     private String parentId;
-    @Expose
-    private Integer score;
+
     @SerializedName("approved_by")
     @Expose
     private Object approvedBy;
@@ -74,8 +73,7 @@ public class T1Data {
     @SerializedName("body_html")
     @Expose
     private String bodyHtml;
-    @Expose
-    private String subreddit;
+
     @SerializedName("score_hidden")
     @Expose
     private Boolean scoreHidden;
@@ -355,23 +353,7 @@ public class T1Data {
         this.reportReasons = reportReasons;
     }
 
-    /**
-     *
-     * @return
-     * The author
-     */
-    public String getAuthor() {
-        return author;
-    }
 
-    /**
-     *
-     * @param author
-     * The author
-     */
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     /**
      *
@@ -391,23 +373,6 @@ public class T1Data {
         this.parentId = parentId;
     }
 
-    /**
-     *
-     * @return
-     * The score
-     */
-    public Integer getScore() {
-        return score;
-    }
-
-    /**
-     *
-     * @param score
-     * The score
-     */
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 
     /**
      *
@@ -517,24 +482,6 @@ public class T1Data {
      */
     public void setBodyHtml(String bodyHtml) {
         this.bodyHtml = bodyHtml;
-    }
-
-    /**
-     *
-     * @return
-     * The subreddit
-     */
-    public String getSubreddit() {
-        return subreddit;
-    }
-
-    /**
-     *
-     * @param subreddit
-     * The subreddit
-     */
-    public void setSubreddit(String subreddit) {
-        this.subreddit = subreddit;
     }
 
     /**

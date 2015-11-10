@@ -256,12 +256,13 @@ public final class RedditApi implements Reddit  {
 
     private <T extends Thing<? extends ListingData>, E extends Thing> List<Post> getListings
             (String requesturl, Integer limit, Class<T> type)  {
-        Double querynum = (limit / 100) + 0.5;
+        Double querynumd = (limit / 100) + 0.5;
+        int querynum = querynumd.intValue();
         String afterid = "";
         List<T> listinglist = new ArrayList<>();
         List<E> submlist = new ArrayList<>();
         //TODO: make the last request partial
-        for(int i=0;i<querynum;i++){
+        for(int i=0;i<=querynum;i++){
             requesturl = requesturl + "&after=" + afterid;
             T listing = this.getDataObject(requesturl, type);
             listinglist.add(listing);
