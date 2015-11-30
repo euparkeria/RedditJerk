@@ -3,17 +3,62 @@ package ga.dryco.JerkTest;
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.controllers.*;
+import ga.dryco.redditJerk.datamodels.PostData;
+import ga.dryco.redditJerk.datamodels.Thing;
 
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class test2 {
     public static void main(String[] args) throws MalformedURLException {
-        Reddit red = RedditApi.getRedditInstance("TestClient34");
+        Reddit red = RedditApi.getRedditInstance("TestCliefnt34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+
+        long startTime = System.currentTimeMillis();
+
+        List<String> idList = new ArrayList<>();
+        for(int i = 4594320; i<=4595615; i++){
+
+            idList.add("t5_" + Integer.toString(i, 36));
+
+        }
+
+        Double numOfQueries = (idList.size() / 100) + 0.5;
+        Integer num = numOfQueries.intValue();
+        Integer curIndex = 0;
+        List<Subreddit> subreddits = new ArrayList<>();
+
+        for(int i = 0; i <= num; i++){
+
+            subreddits.addAll(red.getInfo_subreddit(idList.subList(curIndex, (curIndex + 100) > idList.size() ? idList.size() : curIndex + 100)));
+            curIndex =+100;
+            System.out.println("Query:" + i + ", " + subreddits.size());
+
+        }
+
+        System.out.println(subreddits.size());
+        System.out.println(subreddits);
+
+        for(Subreddit sub: subreddits){
+            System.out.println(sub.getDisplayName());
+
+        }
+
+
+      /*
+        List<Subreddit> subreddits = red.getInfo_subreddit(idList);
+        System.out.println(subreddits.size());
+
+        for(Subreddit sbr:  subreddits){
+            System.out.println(sbr.getDisplayName());
+        }
+
+
+*/
 
         /**
 
@@ -22,14 +67,43 @@ public class test2 {
             System.out.println(com.getBody());
         }
 */
+/*
+        User user = red.getUser("sav2880");
 
-        User user = red.getUser("The_Packeteer");
-
-        List<Link> linklist123 = user.getSubmitted(199);
+        List<Comment> linklist123 = user.getComments(1000);
         System.out.println(linklist123.size());
+        for(Comment com: linklist123){
+            System.out.println(com.getSubredditId());
+        }
+*/
+/**
 
+*/
+/**
+        Map<Integer, Integer> hourAggr = new HashMap<>();
+        Calendar calendar = Calendar.getInstance();
 
+        for(PostData pst: linklist123){
 
+            calendar.setTimeInMillis(pst.getCreatedUtc() * 1000);
+
+            Integer hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+            Integer value = hourAggr.get(hour);
+            if(value == null){
+                hourAggr.put(hour, 1);
+            }else {
+                hourAggr.put(hour, value + 1);
+            }
+
+        }
+
+        System.out.println(hourAggr);
+        */
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println(elapsedTime);
 
 
 

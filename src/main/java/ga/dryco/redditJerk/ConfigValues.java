@@ -6,7 +6,7 @@ public enum ConfigValues {
     OAUTH_URL("https://oauth.reddit.com/");
     private String url;
 
-    private ConfigValues(String url) {
+    ConfigValues(String url) {
         this.url = url;
     }
 

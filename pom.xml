@@ -4,7 +4,7 @@
   <groupId>ga.dryco</groupId>
   <artifactId>RedditJerk</artifactId>
   <packaging>jar</packaging>
-  <version>1.22-SNAPSHOT</version>
+  <version>1.23-SNAPSHOT</version>
   <name>RedditJerk</name>
   <url>http://maven.apache.org</url>
   <dependencies>

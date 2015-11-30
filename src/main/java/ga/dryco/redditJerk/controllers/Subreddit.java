@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by mekoneko on 7/17/2015.
  */
-public class Subreddit extends T5Data {
+public class Subreddit extends T5Data implements Thingy{
 
     Reddit rApi = RedditApi.getRedditInstance();
 

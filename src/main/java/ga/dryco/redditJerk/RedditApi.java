@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import ga.dryco.redditJerk.controllers.*;
 import ga.dryco.redditJerk.datamodels.*;
 import ga.dryco.redditJerk.datamodels.Deserializers.*;
+import ga.dryco.redditJerk.exceptions.RedditJerkException;
 import ga.dryco.redditJerk.rest.AuthInfo;
 import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
@@ -14,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -132,6 +134,22 @@ public final class RedditApi implements Reddit  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_COMMENTS, subreddit, limit);
 
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
+
+    }
+
+    // list can be of comments, links, or subreddit objects
+    public List<Subreddit> getInfo_subreddit(List<String> idList){
+        return this.getInfo(idList, T5Listing.class).stream().map(t -> (Subreddit) t).collect(Collectors.toList());
+    }
+
+
+    public <T extends Thing<? extends ListingData>> List<Thingy> getInfo(List<String> idList, Class<T> typeC){
+        if(idList.size() > 100) throw new RedditJerkException("/api/info thing list larger than 100");
+        String ids = String.join(",", idList);
+
+        String requesturl = String.format(ApiURL + Endpoints.INFO, ids);
+
+        return this.getListings(requesturl, 100, typeC).stream().collect(Collectors.toList());
 
     }
 
@@ -254,7 +272,7 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    private <T extends Thing<? extends ListingData>, E extends Thing> List<Post> getListings
+    private <T extends Thing<? extends ListingData>, E extends Thing> List<Thingy> getListings
             (String requesturl, Integer limit, Class<T> type)  {
         Double querynumd = (limit / 100) + 0.5;
         int querynum = querynumd.intValue();
@@ -279,7 +297,7 @@ public final class RedditApi implements Reddit  {
         if(submlist.size() > limit)
             submlist = submlist.subList(0, limit);
 
-        return submlist.stream().map(e -> (Post) e.getData()).collect(Collectors.toList());
+        return submlist.stream().map(e -> (Thingy) e.getData()).collect(Collectors.toList());
 
     }
 

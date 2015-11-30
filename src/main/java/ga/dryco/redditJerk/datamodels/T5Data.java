@@ -16,6 +16,7 @@ public class T5Data {
     @SerializedName("user_is_banned")
     @Expose
     private Boolean userIsBanned;
+
     @Expose
     private String id;
     @SerializedName("user_is_contributor")
@@ -69,7 +70,7 @@ public class T5Data {
     @Expose
     private String name;
     @Expose
-    private Double created;
+    private long created;
     @Expose
     private String url;
     @SerializedName("hide_ads")
@@ -77,7 +78,7 @@ public class T5Data {
     private Boolean hideAds;
     @SerializedName("created_utc")
     @Expose
-    private Double createdUtc;
+    private long createdUtc;
 
     @SerializedName("user_is_moderator")
     @Expose
@@ -470,7 +471,7 @@ public class T5Data {
      * @return
      * The created
      */
-    public Double getCreated() {
+    public long getCreated() {
         return created;
     }
 
@@ -479,7 +480,7 @@ public class T5Data {
      * @param created
      * The created
      */
-    public void setCreated(Double created) {
+    public void setCreated(long created) {
         this.created = created;
     }
 
@@ -524,7 +525,7 @@ public class T5Data {
      * @return
      * The createdUtc
      */
-    public Double getCreatedUtc() {
+    public long getCreatedUtc() {
         return createdUtc;
     }
 
@@ -533,7 +534,7 @@ public class T5Data {
      * @param createdUtc
      * The created_utc
      */
-    public void setCreatedUtc(Double createdUtc) {
+    public void setCreatedUtc(long createdUtc) {
         this.createdUtc = createdUtc;
     }
 

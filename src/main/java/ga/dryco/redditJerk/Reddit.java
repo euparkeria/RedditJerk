@@ -27,4 +27,5 @@ public interface Reddit {
     void unhide(String fullnameId);
     List<User> getSubredditModerators(String subreddit);
     List<Comment> getSubredditComments(String subreddit, Integer limit);
+    List<Subreddit> getInfo_subreddit(List<String> idList);
 }

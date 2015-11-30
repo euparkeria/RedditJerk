@@ -1,8 +1,5 @@
 package ga.dryco.redditJerk;
 
-/**
- * Created by mekoneko on 8/22/2015.
- */
 public enum Endpoints {
     USER("user/%s/about/"),
     ME("api/v1/me"),
@@ -19,13 +16,14 @@ public enum Endpoints {
     UNHIDE("/api/unhide"),
     REPLY("/api/comment"),
     EDIT("/api/editusertext"),
-    SUB_MODERATORS("/r/%s/about/moderators/");
+    SUB_MODERATORS("/r/%s/about/moderators/"),
+    INFO("/api/info/?id=%s");
 
 
 
     private String url;
 
-    private Endpoints(String url) {
+    Endpoints(String url) {
         this.url = url;
     }
 
