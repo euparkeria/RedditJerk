@@ -42,7 +42,6 @@ public class T3Data extends PostData {
 
     @Expose
     private Boolean clicked;
-    @SerializedName("report_reasons")
 
     @Expose
     private Object media;

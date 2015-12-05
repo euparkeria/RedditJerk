@@ -44,6 +44,7 @@ public class T5Data {
     private String publicDescription;
     @Expose
     private Boolean over18;
+
     @SerializedName("public_description_html")
     @Expose
     private String publicDescriptionHtml;
@@ -58,6 +59,7 @@ public class T5Data {
     @SerializedName("accounts_active")
     @Expose
     private Integer accountsActive;
+
     @SerializedName("public_traffic")
     @Expose
     private Boolean publicTraffic;

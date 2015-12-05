@@ -3,13 +3,10 @@ package ga.dryco.redditJerk;
 
 import ga.dryco.redditJerk.controllers.*;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
-/**
- * Created by mekoneko on 7/4/2015.
- */
+
 public interface Reddit {
     User getUser(String username);
     RedditThread getRedditThread(String url) throws MalformedURLException;
@@ -28,4 +25,6 @@ public interface Reddit {
     List<User> getSubredditModerators(String subreddit);
     List<Comment> getSubredditComments(String subreddit, Integer limit);
     List<Subreddit> getInfo_subreddit(List<String> idList);
+    List<Link> getInfo_link(List<String> idList);
+    List<Comment> getInfo_comment(List<String> idList);
 }

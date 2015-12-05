@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 /**
@@ -142,23 +141,31 @@ public final class RedditApi implements Reddit  {
         return this.getInfo(idList, T5Listing.class).stream().map(t -> (Subreddit) t).collect(Collectors.toList());
     }
 
+    public List<Link> getInfo_link(List<String> idList){
+        return this.getInfo(idList, T3Listing.class).stream().map(t -> (Link) t).collect(Collectors.toList());
+    }
+
+    public List<Comment> getInfo_comment(List<String> idList){
+        return this.getInfo(idList, T1Listing.class).stream().map(t -> (Comment) t).collect(Collectors.toList());
+    }
+
 
     public <T extends Thing<? extends ListingData>> List<Thingy> getInfo(List<String> idList, Class<T> typeC){
-        if(idList.size() > 100) throw new RedditJerkException("/api/info thing list larger than 100");
+        final int MAX_INFO_LIST = 100;
+        if(idList.size() > MAX_INFO_LIST) throw new RedditJerkException("/api/info thing list larger than 100");
         String ids = String.join(",", idList);
 
         String requesturl = String.format(ApiURL + Endpoints.INFO, ids);
 
-        return this.getListings(requesturl, 100, typeC).stream().collect(Collectors.toList());
+        return this.getListings(requesturl, MAX_INFO_LIST, typeC).stream().collect(Collectors.toList());
 
     }
 
     public List<User> getSubredditModerators(String subreddit) {
-        String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
 
         List<User> returnUserList = new ArrayList<>();
 
-        List<ModeratorsData> modListing = this.getDataObject(requesturl, ModeratorsListing.class).getData().getChildren();
+        List<ModeratorsData> modListing = this.getSubredditModeratorsRaw(subreddit);
 
         for (ModeratorsData modD : modListing) {
 
@@ -167,6 +174,21 @@ public final class RedditApi implements Reddit  {
         }
 
         return  returnUserList;
+
+    }
+
+    /**
+     * This returns the raw ModeratorsData objects which avoids all the extra getUser() API calls, useful if you
+     * dont need actual User objects.
+     *
+     * @param subreddit
+     * @return
+     */
+    public List<ModeratorsData> getSubredditModeratorsRaw(String subreddit){
+        String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
+
+
+        return this.getDataObject(requesturl, ModeratorsListing.class).getData().getChildren();
 
     }
 
@@ -290,6 +312,7 @@ public final class RedditApi implements Reddit  {
         }
 
         for(T t1lst:listinglist){
+            //submlist.addAll((List<E>)t1lst.getData().getChildren().stream().collect(Collectors.toList()));
             for(E subm:(List<E>)t1lst.getData().getChildren()){
                 submlist.add(subm);
             }

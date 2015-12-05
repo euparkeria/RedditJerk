@@ -7,9 +7,7 @@ import ga.dryco.redditJerk.datamodels.T2Data;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Created by mekoneko on 7/17/2015.
- */
+
 public class User extends T2Data {
 
     Reddit rApi = RedditApi.getRedditInstance();

@@ -4,16 +4,27 @@ import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-/**
- * Created by mekoneko on 10/17/2015.
- */
-public class ModeratorsData {
 
-    public Double getDate() {
+public class ModeratorsData {
+    @Expose
+    private Long date;
+
+    @Expose
+    private List<String> mod_permissions;
+
+    @Expose
+    private String name;
+
+    @Expose
+    private String id;
+
+
+
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Double date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
@@ -41,15 +52,5 @@ public class ModeratorsData {
         this.id = id;
     }
 
-    @Expose
-    private Double date;
 
-    @Expose
-    private List<String> mod_permissions;
-
-    @Expose
-    private String name;
-
-    @Expose
-    private String id;
 }

@@ -19,9 +19,9 @@ public class test2 {
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         long startTime = System.currentTimeMillis();
-
+/*
         List<String> idList = new ArrayList<>();
-        for(int i = 4594320; i<=4595615; i++){
+        for(int i = 4594320; i<=4594350; i++){
 
             idList.add("t5_" + Integer.toString(i, 36));
 
@@ -44,12 +44,12 @@ public class test2 {
         System.out.println(subreddits);
 
         for(Subreddit sub: subreddits){
-            System.out.println(sub.getDisplayName());
+            System.out.println(sub.getAccountsActive());
 
         }
+*/
+/*
 
-
-      /*
         List<Subreddit> subreddits = red.getInfo_subreddit(idList);
         System.out.println(subreddits.size());
 
@@ -60,22 +60,22 @@ public class test2 {
 
 */
 
-        /**
+/*
 
-        List<Comment> onionComList = red.getSubredditComments("movies", 20);
+        List<Comment> onionComList = red.getSubredditComments("movies", 1000);
         for(Comment com: onionComList){
             System.out.println(com.getBody());
         }
 */
-/*
+
         User user = red.getUser("sav2880");
 
-        List<Comment> linklist123 = user.getComments(1000);
+        List<Link> linklist123 = user.getSubmitted(1000);
         System.out.println(linklist123.size());
-        for(Comment com: linklist123){
-            System.out.println(com.getSubredditId());
+        for(Link com: linklist123){
+            System.out.println(com.getSubreddit());
         }
-*/
+
 /**
 
 */
