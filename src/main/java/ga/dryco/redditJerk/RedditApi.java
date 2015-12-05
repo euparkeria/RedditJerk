@@ -326,7 +326,13 @@ public final class RedditApi implements Reddit  {
 
     private <T> T getDataObject(String requesturl, Class<T> type)  {
 
-        return gson.fromJson(client.get(requesturl), type);
+        String json = client.get(requesturl);
+
+        //check if the returned json is an error message
+        JsonError jerror = gson.fromJson(json, JsonError.class);
+        if(jerror.getError() != null) throw new RedditJerkException("Error Json Object returned, error code:" + jerror.getError());
+
+        return gson.fromJson(json, type);
 
     }
 

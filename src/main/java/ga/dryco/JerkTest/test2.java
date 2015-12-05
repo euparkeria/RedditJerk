@@ -19,6 +19,12 @@ public class test2 {
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         long startTime = System.currentTimeMillis();
+
+        List<String> idList = new ArrayList<>();
+        idList.add("t5_2qk1b");
+
+        System.out.println(red.getInfo_subreddit(idList));
+
 /*
         List<String> idList = new ArrayList<>();
         for(int i = 4594320; i<=4594350; i++){
@@ -67,7 +73,7 @@ public class test2 {
             System.out.println(com.getBody());
         }
 */
-
+/*
         User user = red.getUser("sav2880");
 
         List<Link> linklist123 = user.getSubmitted(1000);
@@ -75,7 +81,7 @@ public class test2 {
         for(Link com: linklist123){
             System.out.println(com.getSubreddit());
         }
-
+*/
 /**
 
 */
