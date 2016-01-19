@@ -1,9 +1,9 @@
 # RedditJerk
 
-RedditJerk is a Reddit API wrapper for java with special focus on fighting stupidity on reddit. My aim is to make it 
-as simple as possible to use and implement many high level utility methods usually not included in Api libraries to ease the task of investigating jerk activity and collect their data. 
+RedditJerk is a Reddit API wrapper for java.  It's aim is to make it 
+as simple as possible to use and implement many high level utility methods usually not included in Api libraries.
 
-######Still in *very* early development!
+######Still in development!
 
 ###Example Usage:
 
