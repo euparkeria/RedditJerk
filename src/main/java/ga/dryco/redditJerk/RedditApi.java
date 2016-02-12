@@ -329,7 +329,14 @@ public final class RedditApi implements Reddit  {
         String json = client.get(requesturl);
 
         //check if the returned json is an error message
-        JsonError jerror = gson.fromJson(json, JsonError.class);
+        JsonError jerror;
+        try{
+            jerror = gson.fromJson(json, JsonError.class);
+        }catch (com.google.gson.JsonSyntaxException ex){
+            throw new RedditJerkException("Server response is not a valid JSON");
+        }
+
+
         if(jerror.getError() != null) throw new RedditJerkException("Error Json Object returned, error code:" + jerror.getError());
 
         return gson.fromJson(json, type);

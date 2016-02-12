@@ -57,8 +57,9 @@ public final class OAuthClient {
         if(this.authInfo == null){
             this.authInfo = ainfo;
         }
-        this.authInfo.setTimeAquired(Instant.now().getEpochSecond());
+
         this.authData = getAccessTokenJson();
+        this.authInfo.setTimeAquired(Instant.now().getEpochSecond());
 
     }
 
@@ -75,7 +76,22 @@ public final class OAuthClient {
 
         Gson gson = new Gson();
 
-        return gson.fromJson(this.post("https://www.reddit.com/api/v1/access_token", urlParameters), AuthData.class);
+        HttpPost post = new HttpPost("https://www.reddit.com/api/v1/access_token");
+
+        try {
+            post.setEntity(new UrlEncodedFormEntity(urlParameters));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        HttpResponse response;
+        try {
+            response = this.postClient.execute(post);
+        } catch (IOException e) {
+            throw new OAuthClientException("Oath getAccessToken Error" , e);
+        }
+
+        return gson.fromJson(this.responseReader(response), AuthData.class);
 
     }
 
@@ -88,7 +104,7 @@ public final class OAuthClient {
         if(this.authData != null){
             request.addHeader("Authorization","bearer " + this.authData.getAccessToken());
         }
-        HttpResponse response = null;
+        HttpResponse response;
         try {
             response = getClient.execute(request);
         } catch (IOException e) {
@@ -118,7 +134,7 @@ public final class OAuthClient {
         try {
             response = this.postClient.execute(post);
         } catch (IOException e) {
-            throw new OAuthClientException("Oath Client IO Error" , e);
+            throw new OAuthClientException("Oath Post IO Error" , e);
         }
 
 
@@ -140,7 +156,7 @@ public final class OAuthClient {
             e.printStackTrace();
         }
 
-        System.out.println(sb.toString());
+        //System.out.println(sb.toString());
         return sb.toString();
     }
 

@@ -101,6 +101,17 @@ public class T5Data {
     @Expose
     private Boolean userIsSubscriber;
 
+    @Expose
+    private Boolean quarantine;
+
+
+    public Boolean getQuarantine() {
+        return quarantine;
+    }
+
+    public void setQuarantine(Boolean quarantine) {
+        this.quarantine = quarantine;
+    }
     /**
      *
      * @return
