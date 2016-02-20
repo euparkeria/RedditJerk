@@ -7,7 +7,7 @@ public enum Endpoints {
     SUBREDDIT( "r/%s/about"),
     USER_COMMENTS("user/%s/comments/?limit=%d&sort=%s"),
     USER_SUBS("user/%s/submitted/?limit=%d&sort=%s"),
-    SUBREDDIT_PAGE("/r/%s/%s/?limit=%d"),
+    SUBREDDIT_PAGE("/r/%s/%s/?limit=%d&t=%s"),
     SUBREDDIT_COMMENTS("/r/%s/comments/?limit=%d"),
     VOTE("/api/vote"),
     SUBMIT("/api/submit"),

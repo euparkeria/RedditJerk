@@ -8,7 +8,8 @@ package ga.dryco.redditJerk.controllers;
 public interface Post extends Thingy{
     Post edit(String text) ;
     void delete() ;
-    void upwnvote() ;
+    void upvote() ;
     void downvote() ;
     Post reply(String text) ;
+    void hide();
 }

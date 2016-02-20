@@ -5,6 +5,7 @@ import ga.dryco.redditJerk.controllers.*;
 
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.StringJoiner;
 
 
 public interface Reddit {
@@ -14,7 +15,7 @@ public interface Reddit {
     Overview getOverview(String username, Integer limit, String sort);
     List<Link> getUserSubmissions(String username, Integer limit, String sort);
     List<Comment> getUserComments(String username, Integer limit, String sort);
-    List<Link> getSubredditPage(String subreddit, Integer limit, String sort);
+    List<Link> getSubredditPage(String subreddit, Integer limit, String sort, String timeperiod);
     User login(String username, String password, String clientId, String secret);
     void vote(String fullnameId, String dir);
     Comment reply(String fullnameId, String text);
@@ -27,4 +28,5 @@ public interface Reddit {
     List<Subreddit> getInfo_subreddit(List<String> idList);
     List<Link> getInfo_link(List<String> idList);
     List<Comment> getInfo_comment(List<String> idList);
+    Link Submit(String subreddit, String title, String bodyOrUrl, String kind);
 }

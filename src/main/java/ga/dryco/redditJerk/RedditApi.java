@@ -9,6 +9,7 @@ import ga.dryco.redditJerk.exceptions.RedditJerkException;
 import ga.dryco.redditJerk.rest.AuthInfo;
 import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
+import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 import org.apache.http.message.BasicNameValuePair;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -123,8 +124,8 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
-    public List<Link> getSubredditPage(String subreddit, Integer limit, String sort)  {
-        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit );
+    public List<Link> getSubredditPage(String subreddit, Integer limit, String sort, String timeperiod)  {
+        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod );
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
@@ -327,13 +328,16 @@ public final class RedditApi implements Reddit  {
     private <T> T getDataObject(String requesturl, Class<T> type)  {
 
         String json = client.get(requesturl);
+        System.out.println(json);
 
         //check if the returned json is an error message
         JsonError jerror;
         try{
             jerror = gson.fromJson(json, JsonError.class);
         }catch (com.google.gson.JsonSyntaxException ex){
-            throw new RedditJerkException("Server response is not a valid JSON");
+            //throw new RedditJerkException("Server response is not a valid JSON");
+            jerror = new JsonError();
+            jerror.setError(null);
         }
 
 

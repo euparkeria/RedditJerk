@@ -11,15 +11,15 @@ public class Subreddit extends T5Data implements Thingy{
     Reddit rApi = RedditApi.getRedditInstance();
 
     public List<Link> getHot(Integer limit)  {
-       return rApi.getSubredditPage(super.getDisplayName(), limit, "hot");
+       return rApi.getSubredditPage(super.getDisplayName(), limit, "hot", "day");
     }
 
     public List<Link> getNew(Integer limit)  {
-        return rApi.getSubredditPage(super.getDisplayName(), limit, "new");
+        return rApi.getSubredditPage(super.getDisplayName(), limit, "new", "day");
     }
 
     public List<Link> getTop(Integer limit)  {
-        return rApi.getSubredditPage(super.getDisplayName(), limit, "top");
+        return rApi.getSubredditPage(super.getDisplayName(), limit, "top", "day");
     }
 
     public List<Comment> getComments(Integer limit){

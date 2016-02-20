@@ -6,7 +6,7 @@ import ga.dryco.redditJerk.controllers.Comment;
 import ga.dryco.redditJerk.controllers.RedditThread;
 import ga.dryco.redditJerk.controllers.User;
 
-import java.io.IOException;
+
 import java.net.MalformedURLException;
 
 /**
@@ -25,7 +25,7 @@ public class clientTest {
         RedditThread tp = null;
 
         try {
-            tp = rApi.getRedditThread("https://www.reddit.com/r/biggomno/comments/3h881b/test/");
+            tp = rApi.getRedditThread("https://www.reddit.com/r/Android/comments/46q9l1/exclusive_android_n_may_not_have_an_app_drawer/");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

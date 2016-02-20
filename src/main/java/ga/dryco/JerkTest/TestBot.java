@@ -32,7 +32,7 @@ public class TestBot {
             List<Link> all = null;
             Integer sbmCount = 0;
 
-            all = red.getSubredditPage("all", submsLastRun + 50, "new");
+            all = red.getSubredditPage("all", submsLastRun + 50, "new", "day");
 
             assert all != null;
             for(Link sbm: all){

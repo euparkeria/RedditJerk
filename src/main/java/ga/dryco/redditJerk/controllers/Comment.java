@@ -22,7 +22,7 @@ public class Comment extends T1Data implements Post {
         rApi.vote(super.getName(), "-1");
     }
 
-    public void upwnvote()  {
+    public void upvote()  {
         rApi.vote(super.getName(), "1");
     }
 
@@ -32,6 +32,10 @@ public class Comment extends T1Data implements Post {
 
     public Comment edit(String text)  {
         return (Comment) rApi.edit(super.getName(), text);
+    }
+
+    public void hide(){
+        rApi.hide(super.getName());
     }
 
 }

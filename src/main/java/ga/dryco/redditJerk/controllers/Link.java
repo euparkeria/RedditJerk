@@ -8,9 +8,6 @@ import ga.dryco.redditJerk.datamodels.T3Data;
 
 import java.io.IOException;
 
-/**
- * Created by mekoneko on 7/17/2015.
- */
 public class Link extends T3Data implements Post{
 
     Reddit rApi = RedditApi.getRedditInstance();
@@ -19,7 +16,7 @@ public class Link extends T3Data implements Post{
         rApi.vote(super.getName(), "-1");
     }
 
-    public void upwnvote()  {
+    public void upvote()  {
         rApi.vote(super.getName(), "1");
     }
 
@@ -33,6 +30,10 @@ public class Link extends T3Data implements Post{
 
     public Link edit(String text)  {
         return (Link) rApi.edit(super.getName(), text);
+    }
+
+    public void hide(){
+        rApi.hide(super.getName());
     }
 
 }

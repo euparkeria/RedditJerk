@@ -10,7 +10,7 @@ as simple as possible to use and implement many high level utility methods usual
 
 ```Java
  //Getting the api instance with useragent as parameter:
- Reddit red = RedditApi.getRedditApiInstance("Reddit client test v1313");
+ Reddit red = RedditApi.getRedditInstance("Reddit client test v1313");
  
  //OAuth login, returns User object of the logged in account
  User myUser = red.login("BotUsername", "BotPassword", "AppId", "AppSecret");
@@ -35,7 +35,7 @@ as simple as possible to use and implement many high level utility methods usual
 
 
 //Replying to  a submittion
-ThreadPost post = red.getThread("https://www.reddit.com/r/southpark/comments/3guton/happy_birthday/");
+RedditThread post = red.getRedditThread("https://www.reddit.com/r/southpark/comments/3guton/happy_birthday/");
 Link subm = post.getSubmissionPost().getData();
 Comment myComment = subm.reply("South Park is Awesome!! :P");
 //Editing our comment
