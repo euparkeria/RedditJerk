@@ -14,7 +14,7 @@ as simple as possible to use and implement many high level utility methods usual
         Reddit red = RedditApi.getRedditInstance("Reddit client test v1313");
 
         //OAuth login, returns User object of the logged in account
-        User myUser = red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+        User myUser = red.login("BotUsername", "BotPassword", "ApyId", "ApiSecret");
 
         //getting a redditor object
         User jerkUser = red.getUser("reditor123");
