@@ -15,7 +15,7 @@ public class clientTest {
         Reddit rApi = RedditApi.getRedditInstance("Test clv1");
 
 
-            User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+        User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         //System.out.println(rApi.authData.getAccessTokenJson());
         //User myuser = rApi.me();
@@ -33,13 +33,13 @@ public class clientTest {
         Comment comm = tp.getFlatComments().get(1);
 
 
-            System.out.println("REPLYING");
-            Comment replcomm = comm.reply("1YapaYapa22");
-            System.out.println(replcomm.getBody());
-            System.out.println(replcomm.getName());
+        System.out.println("REPLYING");
+        Comment replcomm = comm.reply("1YapaYapa22");
+        System.out.println(replcomm.getBody());
+        System.out.println(replcomm.getName());
 
-            Comment edittedComment = replcomm.edit("WORKS FINALLY ???");
-            System.out.println(edittedComment.getBody());
+        Comment edittedComment = replcomm.edit("WORKS FINALLY ???");
+        System.out.println(edittedComment.getBody());
 
 
 

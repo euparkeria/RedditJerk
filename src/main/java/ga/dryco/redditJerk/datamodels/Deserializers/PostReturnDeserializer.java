@@ -4,6 +4,7 @@ import com.google.gson.*;
 import ga.dryco.redditJerk.datamodels.PostReturn;
 import ga.dryco.redditJerk.datamodels.T1;
 import ga.dryco.redditJerk.datamodels.T3;
+import ga.dryco.redditJerk.exceptions.RedditJerkException;
 
 import java.lang.reflect.Type;
 
@@ -13,6 +14,11 @@ public class PostReturnDeserializer implements JsonDeserializer<PostReturn> {
     public PostReturn deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context){
         PostReturn returnObject = new PostReturn();
 
+        if(json.getAsJsonObject().get("json").getAsJsonObject().get("errors").getAsJsonArray().size() != 0){
+            //TODO:improve this
+
+            throw new RedditJerkException("Rate Limit Error, try later");
+        }
         JsonArray thinglist = json.getAsJsonObject().get("json").getAsJsonObject().get("data").getAsJsonObject().getAsJsonArray("things");
         JsonObject thingObj = thinglist.get(0).getAsJsonObject();
         JsonPrimitive kindtext = thingObj.get("kind").getAsJsonPrimitive();

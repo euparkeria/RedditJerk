@@ -2,6 +2,7 @@ package ga.dryco.redditJerk;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import ga.dryco.redditJerk.controllers.*;
 import ga.dryco.redditJerk.datamodels.*;
 import ga.dryco.redditJerk.datamodels.Deserializers.*;
@@ -327,17 +328,27 @@ public final class RedditApi implements Reddit  {
 
     private <T> T getDataObject(String requesturl, Class<T> type)  {
 
+
+        JsonParser parser = new JsonParser();
+
         String json = client.get(requesturl);
-        System.out.println(json);
+
+        try{
+            parser.parse(json);
+        }catch (com.google.gson.JsonSyntaxException ex){
+            throw new RedditJerkException("Server response is not a valid JSON");
+        }
+
+        //System.out.println(json);
 
         //check if the returned json is an error message
         JsonError jerror;
         try{
             jerror = gson.fromJson(json, JsonError.class);
         }catch (com.google.gson.JsonSyntaxException ex){
-            //throw new RedditJerkException("Server response is not a valid JSON");
             jerror = new JsonError();
             jerror.setError(null);
+
         }
 
 
