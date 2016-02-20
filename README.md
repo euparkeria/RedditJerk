@@ -9,8 +9,7 @@ as simple as possible to use and implement many high level utility methods usual
 
 
 ```Java
-  //Getting the api instance with useragent as parameter:
-
+        //Getting the api instance with useragent as parameter:
         Reddit red = RedditApi.getRedditInstance("Reddit client test v1313");
 
         //OAuth login, returns User object of the logged in account
