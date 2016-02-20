@@ -9,9 +9,7 @@ import ga.dryco.redditJerk.controllers.User;
 
 import java.net.MalformedURLException;
 
-/**
- * Created by mekoneko on 8/11/2015.
- */
+
 public class clientTest {
     public static void main(String[] args){
         Reddit rApi = RedditApi.getRedditInstance("Test clv1");

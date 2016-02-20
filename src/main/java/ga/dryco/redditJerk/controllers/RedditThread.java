@@ -8,9 +8,7 @@ import ga.dryco.redditJerk.datamodels.RedditThreadData;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mekoneko on 7/19/2015.
- */
+
 public class RedditThread extends RedditThreadData {
     private List<Comment> flatComments = new ArrayList<>();
     private List<More> more = new ArrayList<>();

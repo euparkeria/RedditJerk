@@ -2,9 +2,7 @@ package ga.dryco.redditJerk.rest;
 
 import java.io.Serializable;
 
-/**
- * Created by mekoneko on 8/14/2015.
- */
+
 public class AuthInfo implements Serializable{
 
     private String username;

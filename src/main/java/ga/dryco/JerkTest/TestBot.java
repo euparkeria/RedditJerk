@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mekoneko on 8/11/2015.
- */
+
 public class TestBot {
     public static void main(String[] args){
 

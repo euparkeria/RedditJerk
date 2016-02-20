@@ -3,9 +3,7 @@ package ga.dryco.redditJerk.datamodels;
 
 import java.util.List;
 
-/**
- * Created by mekoneko on 7/18/2015.
- */
+
 public class OverviewData extends ListingData{
     private List<T3> Submissions;
     private List<T1> Comments;

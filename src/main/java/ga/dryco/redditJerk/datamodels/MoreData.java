@@ -4,9 +4,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-/**
- * Created by mekoneko on 9/27/2015.
- */
+
 public class MoreData {
     @Expose
     private List<String> children;

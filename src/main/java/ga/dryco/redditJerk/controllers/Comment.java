@@ -7,9 +7,7 @@ import ga.dryco.redditJerk.datamodels.T1Data;
 
 import java.io.IOException;
 
-/**
- * Created by mekoneko on 7/17/2015.
- */
+
 public class Comment extends T1Data implements Post {
 
     Reddit rApi = RedditApi.getRedditInstance();

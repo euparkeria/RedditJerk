@@ -8,9 +8,7 @@ import ga.dryco.redditJerk.datamodels.T3;
 import java.lang.reflect.Type;
 
 
-/**
- * Created by mekoneko on 8/16/2015.
- */
+
 public class PostReturnDeserializer implements JsonDeserializer<PostReturn> {
     public PostReturn deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context){
         PostReturn returnObject = new PostReturn();
