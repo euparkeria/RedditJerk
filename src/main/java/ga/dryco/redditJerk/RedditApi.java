@@ -10,7 +10,6 @@ import ga.dryco.redditJerk.exceptions.RedditJerkException;
 import ga.dryco.redditJerk.rest.AuthInfo;
 import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
-import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 import org.apache.http.message.BasicNameValuePair;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -80,14 +79,14 @@ public final class RedditApi implements Reddit  {
     public User getUser(String username) {
         String requesturl = String.format(ApiURL + Endpoints.USER, username);
 
-        T2 t2 = this.getDataObject(requesturl, T2.class);
+        T2 t2 = this.getDataObject(makeHttpRequest(requesturl), T2.class);
         return t2.getData();
     }
 
 
-    public User me() {
+    private User me() {
         String requesturl = ApiURL + Endpoints.ME;
-        return this.getDataObject(requesturl, User.class);
+        return this.getDataObject(makeHttpRequest(requesturl), User.class);
 
     }
 
@@ -97,19 +96,19 @@ public final class RedditApi implements Reddit  {
 
         String requesturl = ApiURL + url;
 
-        return this.getDataObject(requesturl, RedditThread.class);
+        return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }
 
     public Overview getOverview(String username, Integer limit, String sort)  {
         String requesturl = String.format(ApiURL + Endpoints.OVERVIEW, username, limit, sort);
 
-        return this.getDataObject(requesturl, Overview.class);
+        return this.getDataObject(makeHttpRequest(requesturl), Overview.class);
     }
 
     public Subreddit getSubreddit(String subreddit)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT, subreddit);
 
-        return this.getDataObject(requesturl, T5.class).getData();
+        return this.getDataObject(makeHttpRequest(requesturl), T5.class).getData();
     }
 
 
@@ -152,7 +151,7 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    public <T extends Thing<? extends ListingData>> List<Thingy> getInfo(List<String> idList, Class<T> typeC){
+    private <T extends Thing<? extends ListingData>> List<Thingy> getInfo(List<String> idList, Class<T> typeC){
         final int MAX_INFO_LIST = 100;
         if(idList.size() > MAX_INFO_LIST) throw new RedditJerkException("/api/info thing list larger than 100");
         String ids = String.join(",", idList);
@@ -169,11 +168,7 @@ public final class RedditApi implements Reddit  {
 
         List<ModeratorsData> modListing = this.getSubredditModeratorsRaw(subreddit);
 
-        for (ModeratorsData modD : modListing) {
-
-            returnUserList.add(this.getUser(modD.getName()));
-
-        }
+        returnUserList.addAll(modListing.stream().map(modD -> this.getUser(modD.getName())).collect(Collectors.toList()));
 
         return  returnUserList;
 
@@ -183,14 +178,14 @@ public final class RedditApi implements Reddit  {
      * This returns the raw ModeratorsData objects which avoids all the extra getUser() API calls, useful if you
      * dont need actual User objects.
      *
-     * @param subreddit
-     * @return
+     * @param subreddit subreddit name
+     * @return returns a list with ModeratorsData
      */
-    public List<ModeratorsData> getSubredditModeratorsRaw(String subreddit){
+    private List<ModeratorsData> getSubredditModeratorsRaw(String subreddit){
         String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
 
 
-        return this.getDataObject(requesturl, ModeratorsListing.class).getData().getChildren();
+        return this.getDataObject(makeHttpRequest(requesturl), ModeratorsListing.class).getData().getChildren();
 
     }
 
@@ -205,7 +200,7 @@ public final class RedditApi implements Reddit  {
         List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
         urlParameters.add(new BasicNameValuePair("dir", dir));
-        client.post(requesturl, urlParameters);
+        this.makeHttpRequest(requesturl, urlParameters);
     }
 
 
@@ -221,7 +216,7 @@ public final class RedditApi implements Reddit  {
         if(kind.equals("link")) urlParameters.add(new BasicNameValuePair("url", bodyOrUrl));
         if(kind.equals("self")) urlParameters.add(new BasicNameValuePair("text", bodyOrUrl));
 
-        PostReturn pstr = gson.fromJson(client.post(requesturl, urlParameters), PostReturn.class);
+        PostReturn pstr = this.getDataObject(this.makeHttpRequest(requesturl, urlParameters), PostReturn.class);
         return pstr.getLink().getData();
 
 
@@ -234,7 +229,7 @@ public final class RedditApi implements Reddit  {
         urlParameters.add(new BasicNameValuePair("api_type", "json"));
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
 
-        client.post(requesturl, urlParameters);
+        this.makeHttpRequest(requesturl, urlParameters);
 
     }
 
@@ -245,7 +240,7 @@ public final class RedditApi implements Reddit  {
         List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
 
-        client.post(requesturl, urlParameters);
+        this.makeHttpRequest(requesturl, urlParameters);
     }
 
     public final void unhide(String fullnameId) {
@@ -254,7 +249,7 @@ public final class RedditApi implements Reddit  {
         List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
 
-        client.post(requesturl, urlParameters);
+        this.makeHttpRequest(requesturl, urlParameters);
     }
 
     /**
@@ -271,7 +266,8 @@ public final class RedditApi implements Reddit  {
         urlParameters.add(new BasicNameValuePair("text", text));
         urlParameters.add(new BasicNameValuePair("thing_id", fullnameId));
 
-        PostReturn pstr = gson.fromJson(client.post(requesturl, urlParameters), PostReturn.class);
+        PostReturn pstr = this.getDataObject(this.makeHttpRequest(requesturl, urlParameters), PostReturn.class);
+
         return pstr.getComment().getData();
     }
 
@@ -286,7 +282,7 @@ public final class RedditApi implements Reddit  {
         urlParameters.add(new BasicNameValuePair("thing_id", fullnameId));
 
 
-        PostReturn pstr = gson.fromJson(client.post(requesturl, urlParameters), PostReturn.class);
+        PostReturn pstr = this.getDataObject(this.makeHttpRequest(requesturl, urlParameters), PostReturn.class);
 
         if(pstr.getKind().equals("link")){
             return pstr.getLink().getData();
@@ -326,12 +322,19 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    private <T> T getDataObject(String requesturl, Class<T> type)  {
 
+    private String makeHttpRequest(String requesturl){
+        return client.get(requesturl);
+    }
+
+    private String makeHttpRequest(String requesturl, List<NameValuePair> urlParameters){
+        return client.post(requesturl, urlParameters);
+    }
+
+
+    private <T> T getDataObject(String json, Class<T> type)  {
 
         JsonParser parser = new JsonParser();
-
-        String json = client.get(requesturl);
 
         try{
             parser.parse(json);
