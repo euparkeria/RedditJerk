@@ -99,7 +99,7 @@ public final class RedditApi implements Reddit  {
         return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }
 
-    public Overview getOverview(String username, Integer limit, String sort)  {
+    public Overview getOverview(String username, Integer limit, Sorting sort)  {
         String requesturl = String.format(ApiURL + Endpoints.OVERVIEW, username, limit, sort);
 
         return this.getDataObject(makeHttpRequest(requesturl), Overview.class);
@@ -112,19 +112,19 @@ public final class RedditApi implements Reddit  {
     }
 
 
-    public final List<Comment> getUserComments(String username, Integer limit, String sort) {
+    public final List<Comment> getUserComments(String username, Integer limit, Sorting sort) {
         String requesturl = String.format(ApiURL + Endpoints.USER_COMMENTS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
     }
 
-    public final List<Link> getUserSubmissions(String username, Integer limit, String sort)  {
+    public final List<Link> getUserSubmissions(String username, Integer limit, Sorting sort)  {
         String requesturl = String.format(ApiURL + Endpoints.USER_SUBS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
-    public List<Link> getSubredditPage(String subreddit, Integer limit, String sort, String timeperiod)  {
+    public List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, String timeperiod)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod );
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
@@ -300,9 +300,10 @@ public final class RedditApi implements Reddit  {
         List<T> listinglist = new ArrayList<>();
         List<E> submlist = new ArrayList<>();
         //TODO: make the last request partial
+        System.out.println(requesturl);
         for(int i=0;i<=querynum;i++){
             requesturl = requesturl + "&after=" + afterid;
-            T listing = this.getDataObject(requesturl, type);
+            T listing = this.getDataObject(makeHttpRequest(requesturl), type);
             listinglist.add(listing);
             afterid = listing.getData().getAfter();
 
@@ -335,6 +336,7 @@ public final class RedditApi implements Reddit  {
     private <T> T getDataObject(String json, Class<T> type)  {
 
         JsonParser parser = new JsonParser();
+        //System.out.println(json);
 
         try{
             parser.parse(json);

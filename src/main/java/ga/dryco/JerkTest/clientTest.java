@@ -2,12 +2,12 @@ package ga.dryco.JerkTest;
 
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.controllers.Comment;
-import ga.dryco.redditJerk.controllers.RedditThread;
-import ga.dryco.redditJerk.controllers.User;
+import ga.dryco.redditJerk.Sorting;
+import ga.dryco.redditJerk.controllers.*;
 
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 
 public class clientTest {
@@ -32,14 +32,20 @@ public class clientTest {
         assert tp != null;
         Comment comm = tp.getFlatComments().get(1);
 
+        Subreddit sub22 = rApi.getSubreddit("Marxism");
+        sub22.getHot(20);
+
+
+
+
 
         System.out.println("REPLYING");
-        Comment replcomm = comm.reply("1YapaYapa22");
-        System.out.println(replcomm.getBody());
-        System.out.println(replcomm.getName());
+        //Comment replcomm = comm.reply("1YapaYapa22");
+        //System.out.println(replcomm.getBody());
+        //System.out.println(replcomm.getName());
 
-        Comment edittedComment = replcomm.edit("WORKS FINALLY ???");
-        System.out.println(edittedComment.getBody());
+        //Comment edittedComment = replcomm.edit("WORKS FINALLY ???");
+        //System.out.println(edittedComment.getBody());
 
 
 

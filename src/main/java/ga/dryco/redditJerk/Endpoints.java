@@ -1,6 +1,6 @@
 package ga.dryco.redditJerk;
 
-public enum Endpoints {
+enum Endpoints {
     USER("user/%s/about/"),
     ME("api/v1/me"),
     OVERVIEW("user/%s/?limit=%d&sort=%s"),

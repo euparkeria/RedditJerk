@@ -2,6 +2,7 @@ package ga.dryco.redditJerk.controllers;
 
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
+import ga.dryco.redditJerk.Sorting;
 import ga.dryco.redditJerk.datamodels.T2Data;
 
 import java.util.List;
@@ -12,24 +13,24 @@ public class User extends T2Data {
 
     Reddit rApi = RedditApi.getRedditInstance();
 
-    public Overview getOverview(Integer limit, String sort)  {
+    public Overview getOverview(Integer limit, Sorting sort)  {
         return rApi.getOverview(super.getName(), limit, sort);
     }
 
     public List<Link> getSubmitted(Integer limit)  {
-       return rApi.getUserSubmissions(super.getName(), limit, "new");
+       return rApi.getUserSubmissions(super.getName(), limit, Sorting.NEW);
     }
 
-    public List<Link> getSubmitted(Integer limit, String sort)  {
+    public List<Link> getSubmitted(Integer limit, Sorting sort)  {
         return rApi.getUserSubmissions(super.getName(), limit, sort);
     }
 
     public List<Comment> getComments(Integer limit)  {
-        return rApi.getUserComments(super.getName(), limit, "new");
+        return rApi.getUserComments(super.getName(), limit, Sorting.NEW);
     }
 
 
-    public List<Comment> getComments(Integer limit, String sort)  {
+    public List<Comment> getComments(Integer limit, Sorting sort)  {
         return rApi.getUserComments(super.getName(), limit, sort);
     }
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Link extends T3Data implements Post{
 
-    Reddit rApi = RedditApi.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     public void downvote()  {
         rApi.vote(super.getName(), "-1");

@@ -2,6 +2,7 @@ package ga.dryco.JerkTest;
 
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
+import ga.dryco.redditJerk.Sorting;
 import ga.dryco.redditJerk.controllers.*;
 
 import java.net.MalformedURLException;
@@ -22,10 +23,10 @@ public class examplesTest {
         User jerkUser = red.getUser("reditor123");
 
         //getting user comments, gets 200 newest comments
-        List<Comment> clist = jerkUser.getComments(200, "new");
+        List<Comment> clist = jerkUser.getComments(200, Sorting.NEW);
 
         //getting user's top 100 submissions
-        List<Link> slist = jerkUser.getSubmitted(100,"top");
+        List<Link> slist = jerkUser.getSubmitted(100,Sorting.TOP);
 
         //Getting user's Karma Balance in a moronic subreddit for his last 200 comments
         Integer karmaBalance = jerkUser.getKarmaBalance("MensRights", 200);
@@ -60,7 +61,7 @@ public class examplesTest {
         red.Submit("TheRedPill", "DAE thinks women's job should be to please and serve men !?", "Anyone ? ", "self");
 
         //get top 5 submittions of the week in /r/learnprogramming
-        List<Link> learnPrgrTop = red.getSubredditPage("learnprogramming", 5, "top", "week");
+        List<Link> learnPrgrTop = red.getSubredditPage("learnprogramming", 5, Sorting.TOP, "week");
         //getting /r/learnprogramming's moderators
         List<User> learnPrgMods = red.getSubredditModerators("learnprogramming");
 
