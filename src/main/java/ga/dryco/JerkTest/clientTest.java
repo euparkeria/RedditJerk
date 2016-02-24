@@ -17,14 +17,8 @@ public class clientTest {
 
         User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
-
-
-        User heuhue = rApi.getUser("");
-        List<Link> hiddenList = heuhue.getSubmitted(1000);
-
-        for(Link ln:hiddenList){
-            System.out.println(ln.getAuthor());
-        }
+        rApi.subscribe("news");
+        rApi.unsubscribe("news");
 
 
         //System.out.println(rApi.authData.getAccessTokenJson());

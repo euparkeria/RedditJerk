@@ -30,8 +30,15 @@ public final class OAuthClient {
     private String userAgent;
     private HttpClient postClient;
     private AuthInfo authInfo;
+
+
+
     private AuthData authData;
 
+
+    public AuthInfo getAuthInfo() {
+        return authInfo;
+    }
     public void setAuthData(AuthData authData) {
         this.authData = authData;
     }
@@ -156,7 +163,7 @@ public final class OAuthClient {
             e.printStackTrace();
         }
 
-        //System.out.println(sb.toString());
+        System.out.println(sb.toString());
         return sb.toString();
     }
 

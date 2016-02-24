@@ -254,6 +254,28 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    public final void subscribe(String subreddit){
+        String requesturl = ApiURL + Endpoints.SUBSCRIBE;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("action", "sub"));
+        urlParameters.add(new BasicNameValuePair("sr_name", subreddit));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    public final void unsubscribe(String subreddit){
+        String requesturl = ApiURL + Endpoints.SUBSCRIBE;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("action", "unsub"));
+        urlParameters.add(new BasicNameValuePair("sr_name", subreddit));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
 
     public final void hide(String fullnameId)  {
         String requesturl = ApiURL + Endpoints.HIDE;

@@ -21,7 +21,8 @@ enum Endpoints {
     REPLY("/api/comment"),
     EDIT("/api/editusertext"),
     SUB_MODERATORS("/r/%s/about/moderators/"),
-    INFO("/api/info/?id=%s");
+    INFO("/api/info/?id=%s"),
+    SUBSCRIBE("/api/subscribe");
 
 
 
