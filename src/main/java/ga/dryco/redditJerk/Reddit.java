@@ -15,7 +15,7 @@ public interface Reddit {
     Overview getOverview(String username, Integer limit, Sorting sort);
     List<Link> getUserSubmissions(String username, Integer limit, Sorting sort);
     List<Comment> getUserComments(String username, Integer limit, Sorting sort);
-    List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, String timeperiod);
+    List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, FromPast timeperiod);
     User login(String username, String password, String clientId, String secret);
     void vote(String fullnameId, String dir);
     Comment reply(String fullnameId, String text);
@@ -29,4 +29,7 @@ public interface Reddit {
     List<Link> getInfo_link(List<String> idList);
     List<Comment> getInfo_comment(List<String> idList);
     Link Submit(String subreddit, String title, String bodyOrUrl, String kind);
+    List<Link> getUserHidden(String username, Integer limit);
+    List<Link> getUserDownvoted(String username, Integer limit);
+    List<Link> getUserUpvoted(String username, Integer limit);
 }

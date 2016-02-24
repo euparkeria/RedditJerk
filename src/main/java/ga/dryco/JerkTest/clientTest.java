@@ -17,9 +17,20 @@ public class clientTest {
 
         User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
+
+
+        User heuhue = rApi.getUser("");
+        List<Link> hiddenList = heuhue.getSubmitted(1000);
+
+        for(Link ln:hiddenList){
+            System.out.println(ln.getAuthor());
+        }
+
+
         //System.out.println(rApi.authData.getAccessTokenJson());
         //User myuser = rApi.me();
         //System.out.println(myuser.getName());
+        /*
         RedditThread tp = null;
 
         try {
@@ -39,7 +50,7 @@ public class clientTest {
 
 
 
-        System.out.println("REPLYING");
+        System.out.println("REPLYING");*/
         //Comment replcomm = comm.reply("1YapaYapa22");
         //System.out.println(replcomm.getBody());
         //System.out.println(replcomm.getName());

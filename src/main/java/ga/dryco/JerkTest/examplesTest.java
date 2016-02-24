@@ -1,5 +1,6 @@
 package ga.dryco.JerkTest;
 
+import ga.dryco.redditJerk.FromPast;
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.Sorting;
@@ -61,7 +62,7 @@ public class examplesTest {
         red.Submit("TheRedPill", "DAE thinks women's job should be to please and serve men !?", "Anyone ? ", "self");
 
         //get top 5 submittions of the week in /r/learnprogramming
-        List<Link> learnPrgrTop = red.getSubredditPage("learnprogramming", 5, Sorting.TOP, "week");
+        List<Link> learnPrgrTop = red.getSubredditPage("learnprogramming", 5, Sorting.TOP, FromPast.WEEK);
         //getting /r/learnprogramming's moderators
         List<User> learnPrgMods = red.getSubredditModerators("learnprogramming");
 

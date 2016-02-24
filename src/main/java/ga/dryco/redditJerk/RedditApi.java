@@ -118,13 +118,34 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
     }
 
+    public final List<Link> getUserUpvoted(String username, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.USER_UPVOTED, username, limit);
+
+        return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
+
+    }
+
+    public final List<Link> getUserDownvoted(String username, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.USER_DOWNVOTED, username, limit);
+
+        return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
+
+    }
+
+    public final List<Link> getUserHidden(String username, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.USER_HIDDEN, username, limit);
+
+        return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
+
+    }
+
     public final List<Link> getUserSubmissions(String username, Integer limit, Sorting sort)  {
         String requesturl = String.format(ApiURL + Endpoints.USER_SUBS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
-    public List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, String timeperiod)  {
+    public List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, FromPast timeperiod)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod );
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());

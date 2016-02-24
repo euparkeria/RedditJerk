@@ -1,10 +1,12 @@
 package ga.dryco.redditJerk;
 
- public enum Sorting {
+public enum Sorting {
+
     NEW("new"),
     TOP("top"),
     HOT("hot"),
-    CONTROVERSIAL("controversial");
+    CONTROVERSIAL("controversial"),
+    RISING("rising");
 
     private String sortingString;
 

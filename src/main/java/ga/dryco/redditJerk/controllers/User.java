@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class User extends T2Data {
 
-    Reddit rApi = RedditApi.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     public Overview getOverview(Integer limit, Sorting sort)  {
         return rApi.getOverview(super.getName(), limit, sort);
@@ -32,6 +32,18 @@ public class User extends T2Data {
 
     public List<Comment> getComments(Integer limit, Sorting sort)  {
         return rApi.getUserComments(super.getName(), limit, sort);
+    }
+
+    public List<Link> getHidden(Integer limit){
+        return rApi.getUserHidden(super.getName(), limit);
+    }
+
+    public List<Link> getUpvoted(Integer limit){
+        return rApi.getUserUpvoted(super.getName(), limit);
+    }
+
+    public List<Link> getDownvoted(Integer limit){
+        return rApi.getUserDownvoted(super.getName(), limit);
     }
 
 

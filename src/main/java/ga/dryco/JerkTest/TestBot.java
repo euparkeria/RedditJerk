@@ -1,11 +1,11 @@
 package ga.dryco.JerkTest;
 
+import ga.dryco.redditJerk.FromPast;
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.Sorting;
 import ga.dryco.redditJerk.controllers.Link;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class TestBot {
             List<Link> all = null;
             Integer sbmCount = 0;
 
-            all = red.getSubredditPage("all", submsLastRun + 50, Sorting.NEW, "day");
+            all = red.getSubredditPage("all", submsLastRun + 50, Sorting.NEW, FromPast.DAY);
 
             assert all != null;
             for(Link sbm: all){

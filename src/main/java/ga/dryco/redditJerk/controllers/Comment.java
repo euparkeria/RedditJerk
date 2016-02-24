@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Comment extends T1Data implements Post {
 
-    Reddit rApi = RedditApi.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     public Comment reply(String text) {
         return rApi.reply(super.getName(), text);
