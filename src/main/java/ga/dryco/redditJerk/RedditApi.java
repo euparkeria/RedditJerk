@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
  */
 public final class RedditApi implements Reddit  {
     private final OAuthClient client;
-    /* different ApiURL are needed depending on using oauth or not*/
-    //private final String ApiURL = "https://oauth.reddit.com/";
+
+
     private String ApiURL = ConfigValues.API_URL.toString();
     private final Gson gson;
 

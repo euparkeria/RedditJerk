@@ -5,7 +5,7 @@ import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.datamodels.T1Data;
 
 
-import java.io.IOException;
+
 
 
 public class Comment extends T1Data implements Post {

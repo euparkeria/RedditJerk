@@ -4,10 +4,6 @@ import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.datamodels.T3Data;
 
-
-
-import java.io.IOException;
-
 public class Link extends T3Data implements Post{
 
     private Reddit rApi = RedditApi.getRedditInstance();

@@ -28,7 +28,7 @@ public class TestBot {
         red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         while (true){
-            List<Link> all = null;
+            List<Link> all;
             Integer sbmCount = 0;
 
             all = red.getSubredditPage("all", submsLastRun + 50, Sorting.NEW, FromPast.DAY);

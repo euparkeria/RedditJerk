@@ -2,12 +2,10 @@ package ga.dryco.JerkTest;
 
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.Sorting;
+
 import ga.dryco.redditJerk.controllers.*;
 
 
-import java.net.MalformedURLException;
-import java.util.List;
 
 
 public class clientTest {
