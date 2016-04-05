@@ -25,7 +25,7 @@ public class TestBot {
         keywords.add("Ahsoka");
         Reddit red = RedditApi.getRedditInstance("TestClient34");
 
-        red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+        //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         while (true){
             List<Link> all;

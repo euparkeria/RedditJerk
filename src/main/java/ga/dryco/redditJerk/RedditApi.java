@@ -7,7 +7,6 @@ import ga.dryco.redditJerk.controllers.*;
 import ga.dryco.redditJerk.datamodels.*;
 import ga.dryco.redditJerk.datamodels.Deserializers.*;
 import ga.dryco.redditJerk.exceptions.RedditJerkException;
-import ga.dryco.redditJerk.rest.AuthInfo;
 import ga.dryco.redditJerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -64,7 +63,7 @@ public final class RedditApi implements Reddit  {
      */
     public User login(String username, String password, String clientId, String secret) {
         this.ApiURL = ConfigValues.OAUTH_URL.toString();
-        client.OAuthAuthenitcation(new AuthInfo(username, password, clientId, secret));
+        client.Authenticate(username, password, clientId, secret);
 
         return this.me();
     }

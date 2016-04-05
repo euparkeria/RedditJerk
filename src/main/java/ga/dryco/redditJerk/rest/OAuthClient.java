@@ -39,6 +39,7 @@ public final class OAuthClient {
     public AuthInfo getAuthInfo() {
         return authInfo;
     }
+
     public void setAuthData(AuthData authData) {
         this.authData = authData;
     }
@@ -47,31 +48,43 @@ public final class OAuthClient {
         this.userAgent = useragent;
     }
 
-    public void renewAccessToken() {
+    private void renewAccessToken() {
         //if current time is bigger or equal to token's time of aquiering + expire value - 3 minutes
         if(authData != null){
             if(Instant.now().getEpochSecond() >= (authInfo.getTimeAquired() + authData.getExpiresIn() - 180)){
 
                 // requesting new token with token header set will result in 401 error
                 this.authData = null;
-                OAuthAuthenitcation(authInfo);
+                this.OAuthAuthenitcation();
             }
         }
 
     }
 
-    public void OAuthAuthenitcation(AuthInfo ainfo) {
+    public AuthInfo Authenticate(String username, String password, String clientId, String secret){
         if(this.authInfo == null){
-            this.authInfo = ainfo;
+            this.authInfo = new AuthInfo(username, password, clientId, secret);
+            this.OAuthAuthenitcation();
+        } else this.renewAccessToken();
+
+        return this.authInfo;
+
+    }
+
+    private void OAuthAuthenitcation() {
+        if(this.authInfo == null){
+            throw new OAuthClientException("No Authentication info present");
         }
 
         this.authData = getAccessTokenJson();
         this.authInfo.setTimeAquired(Instant.now().getEpochSecond());
-
     }
 
 
-    public AuthData getAccessTokenJson() {
+
+
+
+    private AuthData getAccessTokenJson() {
         CredentialsProvider provider = new BasicCredentialsProvider();
         UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(authInfo.getClientId(), authInfo.getSecret());
         provider.setCredentials(AuthScope.ANY, credentials);
@@ -127,6 +140,7 @@ public final class OAuthClient {
         renewAccessToken();
 
         HttpPost post = new HttpPost(url);
+
         if(this.authData != null){
             post.addHeader("Authorization","bearer " + this.authData.getAccessToken());
         }
