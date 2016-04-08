@@ -7,6 +7,7 @@ enum Endpoints {
     SUBREDDIT( "r/%s/about"),
     USER_COMMENTS("user/%s/comments/?limit=%d&sort=%s"),
     USER_SUBS("user/%s/submitted/?limit=%d&sort=%s"),
+    USER_GILDED("user/%s/gilded/?limit=%d"),
     USER_UPVOTED("user/%s/upvoted/?limit=%d"),
     USER_DOWNVOTED("user/%s/downvoted/?limit=%d"),
     USER_HIDDEN("user/%s/hidden/?limit=%d"),

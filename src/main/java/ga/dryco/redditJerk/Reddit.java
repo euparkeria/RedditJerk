@@ -32,6 +32,7 @@ public interface Reddit {
     List<Link> getUserHidden(String username, Integer limit);
     List<Link> getUserDownvoted(String username, Integer limit);
     List<Link> getUserUpvoted(String username, Integer limit);
+    List<Comment> getUserGilded(String username, Integer limit);
     void subscribe(String subreddit);
     void unsubscribe(String subreddit);
 }

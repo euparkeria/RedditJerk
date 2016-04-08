@@ -46,6 +46,8 @@ public class User extends T2Data {
         return rApi.getUserDownvoted(super.getName(), limit);
     }
 
+    public List<Comment> getGilded(Integer limit){ return rApi.getUserGilded(super.getName(), limit);
+    }
 
     /**
      * Extra utility functions

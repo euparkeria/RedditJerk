@@ -20,10 +20,13 @@ public class test2 {
 
         long startTime = System.currentTimeMillis();
 
-        List<String> idList = new ArrayList<>();
-        idList.add("t5_2qk1b");
+        User someone = red.getUser("IAmAQuantumMechanic");
+        List<Comment> comlst = someone.getGilded(5);
 
-        System.out.println(red.getInfo_subreddit(idList));
+        for(Comment com:comlst){
+            System.out.println(com.getBody());
+        }
+
 
 /*
         List<String> idList = new ArrayList<>();

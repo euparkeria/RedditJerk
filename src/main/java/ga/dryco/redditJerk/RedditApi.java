@@ -117,6 +117,13 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
     }
 
+    public final List<Comment> getUserGilded(String username, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.USER_GILDED, username, limit);
+
+        return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
+
+    }
+
     public final List<Link> getUserUpvoted(String username, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.USER_UPVOTED, username, limit);
 
