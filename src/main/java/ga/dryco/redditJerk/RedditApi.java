@@ -164,6 +164,36 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    public List<Comment> getReportedComments(String subreddit, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.GET_REPORTED_COMMENTS, subreddit, limit);
+
+        return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
+
+    }
+
+    public List<Link> getReportedSubmission(String subreddit, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.GET_REPORTED_SUBMISSIONS, subreddit, limit);
+
+        return this.getListings(requesturl, limit, T3Listing.class).stream().map(cmt -> (Link) cmt).collect(Collectors.toList());
+
+    }
+
+
+    public List<Comment> getSpamComments(String subreddit, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.GET_SPAM_COMMENTS, subreddit, limit);
+
+        return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
+
+    }
+
+    public List<Link> getSpamSubmission(String subreddit, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.GET_SPAM_SUBMISSIONS, subreddit, limit);
+
+        return this.getListings(requesturl, limit, T3Listing.class).stream().map(cmt -> (Link) cmt).collect(Collectors.toList());
+
+    }
+
+
     // list can be of comments, links, or subreddit objects
     public List<Subreddit> getInfo_subreddit(List<String> idList){
         return this.getInfo(idList, T5Listing.class).stream().map(t -> (Subreddit) t).collect(Collectors.toList());
@@ -203,7 +233,7 @@ public final class RedditApi implements Reddit  {
 
     /**
      * This returns the raw ModeratorsData objects which avoids all the extra getUser() API calls, useful if you
-     * dont need actual User objects.
+     * dont need the actual User objects.
      *
      * @param subreddit subreddit name
      * @return returns a list with ModeratorsData
@@ -340,6 +370,58 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    public final void accept_mod_invite(String subreddit){
+        String requesturl = String.format(ApiURL + Endpoints.ACCEPT_MOD_INVITE, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    /**
+     * The reddit API requires subreddit fullId instead of Name to leave moderation so we do another api call here
+     * to get the fullid from a subreddit name
+     *
+     * @param subreddit
+     */
+    public final void leave_moderation(String subreddit){
+        String requesturl = ApiURL + Endpoints.LEAVE_MODERATOR;
+
+        String subFullId = this.getSubreddit(subreddit).getName();
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", subFullId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    public final void ignore_reports(String thingFullId){
+        String requesturl = ApiURL + Endpoints.IGNORE_REPORTS;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", thingFullId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public final void unignore_reports(String thingFullId){
+        String requesturl = ApiURL + Endpoints.UNIGNORE_REPORTS;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", thingFullId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+
+
 
     private <T extends Thing<? extends ListingData>, E extends Thing> List<Thingy> getListings
             (String requesturl, Integer limit, Class<T> type)  {
@@ -385,15 +467,12 @@ public final class RedditApi implements Reddit  {
     private <T> T getDataObject(String json, Class<T> type)  {
 
         JsonParser parser = new JsonParser();
-        //System.out.println(json);
 
         try{
             parser.parse(json);
         }catch (com.google.gson.JsonSyntaxException ex){
             throw new RedditJerkException("Server response is not a valid JSON");
         }
-
-        //System.out.println(json);
 
         //check if the returned json is an error message
         JsonError jerror;
@@ -404,7 +483,6 @@ public final class RedditApi implements Reddit  {
             jerror.setError(null);
 
         }
-
 
         if(jerror.getError() != null) throw new RedditJerkException("Error Json Object returned, error code:" + jerror.getError());
 

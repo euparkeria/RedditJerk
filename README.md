@@ -1,7 +1,7 @@
 # RedditJerk
 
 RedditJerk is a Reddit API wrapper for java.  It's aim is to make it 
-as simple as possible to use and implement many high level utility methods usually not included in Api libraries.
+as simple as possible to use and implement many high level utility methods usually not included in Api libraries. Requires JAVA 8 or higher.
 
 ######Still in development!
 

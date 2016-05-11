@@ -56,7 +56,7 @@ public class PostData {
 
     @SerializedName("report_reasons")
     @Expose
-    private String reportReasons;
+    private List<String> reportReasons;
 
     @SerializedName("user_reports")
     @Expose
@@ -201,11 +201,11 @@ public class PostData {
         this.archived = archived;
     }
 
-    public String getReportReasons() {
+    public List<String> getReportReasons() {
         return reportReasons;
     }
 
-    public void setReportReasons(String reportReasons) {
+    public void setReportReasons(List<String> reportReasons) {
         this.reportReasons = reportReasons;
     }
 

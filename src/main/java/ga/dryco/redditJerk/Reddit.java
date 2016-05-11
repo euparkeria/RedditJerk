@@ -35,4 +35,11 @@ public interface Reddit {
     List<Comment> getUserGilded(String username, Integer limit);
     void subscribe(String subreddit);
     void unsubscribe(String subreddit);
+    void accept_mod_invite(String subreddit);
+    void leave_moderation(String subreddit);
+    void ignore_reports(String thingFullId);
+    List<Link> getReportedSubmission(String subreddit, Integer limit);
+    List<Comment> getReportedComments(String subreddit, Integer limit);
+    List<Comment> getSpamComments(String subreddit, Integer limit);
+    List<Link> getSpamSubmission(String subreddit, Integer limit);
 }

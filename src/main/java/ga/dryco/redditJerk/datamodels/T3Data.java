@@ -100,7 +100,6 @@ public class T3Data extends PostData {
     @Expose
     private Boolean visited;
 
-
     public String getDomain() {
         return domain;
     }

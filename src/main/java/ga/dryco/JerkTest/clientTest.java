@@ -5,7 +5,7 @@ import ga.dryco.redditJerk.RedditApi;
 
 import ga.dryco.redditJerk.controllers.*;
 
-
+import java.util.List;
 
 
 public class clientTest {
@@ -15,8 +15,17 @@ public class clientTest {
 
         User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
-        rApi.subscribe("news");
-        rApi.unsubscribe("news");
+        //rApi.subscribe("flairtestsubreddit");
+
+      //  rApi.accept_mod_invite("flairtestsubreddit");
+
+        List<Link> rlist = rApi.getSpamSubmission("flairtestsubreddit", 100);
+        for(Link lnk:rlist){
+            System.out.println(lnk.getTitle());
+        }
+
+        //rApi.leave_moderation("flairtestsubreddit");
+
 
 
         //System.out.println(rApi.authData.getAccessTokenJson());
