@@ -15,7 +15,8 @@ as simple as possible to use and implement many high level utility methods usual
     
     //OAuth login, returns User object of the logged in account.
     //This the recommended way of OAuth2 authenticating for "bots and personal scripts".
-    //In this example the bot username is: RedditJerkTest, it's password is: jerkjerkjerk, the app client id is: WoXLiKdjulE09Q amd app secret is: QoG2unmpgAum-IQ92NDhhNy-UKs
+    //In this example the bot username is: RedditJerkTest, it's password is: jerkjerkjerk,
+    //the app client id is: WoXLiKdjulE09Q amd app secret is: QoG2unmpgAum-IQ92NDhhNy-UKs
     User myUser = red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
     
     //getting a redditor object
