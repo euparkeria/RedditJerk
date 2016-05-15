@@ -1,9 +1,6 @@
 package ga.dryco.JerkTest;
 
-import ga.dryco.redditJerk.FromPast;
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.Sorting;
+import ga.dryco.redditJerk.*;
 import ga.dryco.redditJerk.controllers.*;
 
 import java.net.MalformedURLException;
@@ -70,6 +67,56 @@ public class examplesTest {
         for(User modusr: learnPrgMods){
             System.out.println(modusr.getName());
         }
+
+        /**
+         *
+         * MODERATION API
+         *
+         *
+         */
+
+        //Accept an invitation to be moderator in /r/Movies
+        red.accept_mod_invite("Movies");
+
+        //Leaving as moderator in /r/Videos
+        red.leave_moderation("Videos");
+
+        red.approve("t3_4jeqzj");
+
+        //remove comment or submission, second parameter: spam= true or false.
+        red.remove("t3_4jeqzj", true);
+
+        //Ignore reports from a thing, submission or comment fullId.
+        red.ignore_reports("t3_4jeqzj");
+
+        //unignore
+        red.unignore_reports("t3_4jeqzj");
+
+        //Distinguish
+        red.distinguish("t3_4jeqzj", Distinguish.YES);
+        red.distinguish("t3_4jeqzj", Distinguish.ADMIN);
+        red.distinguish("t3_4jeqzj", Distinguish.SPECIAL);
+        red.distinguish("t3_4jeqzj", Distinguish.NO);
+
+        //Get 100 reported comments in a subreddit you are a moderator of
+        red.getModerationReportsComments("Movies", Moderation.REPORTED, 100);
+
+        //Reported 100 Submissions
+        red.getModerationReportsSubmissions("Movies", Moderation.REPORTED, 100);
+
+        //Get 100 Spam comments
+        red.getModerationReportsComments("Movies", Moderation.SPAM, 100);
+
+        //Get 20 queued moderation Submissions
+        red.getModerationReportsSubmissions("Movies", Moderation.QUEUE, 20);
+
+        //Get 50 Unmoderated Submissions
+        red.getModerationReportsSubmissions("Movies", Moderation.UNMODERATED, 50);
+
+        //Get Edited comments
+        red.getModerationReportsComments("Movies", Moderation.EDITED, 20);
+
+
 
 
 

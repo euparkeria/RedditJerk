@@ -26,12 +26,14 @@ enum Endpoints {
     SUBSCRIBE("/api/subscribe"),
     ACCEPT_MOD_INVITE("/r/%s/api/accept_moderator_invite"),
     LEAVE_MODERATOR("/api/leavemoderator"),
+    LEAVE_CONTRIBUTOR("/api/leavecontributor"),
     IGNORE_REPORTS("/api/ignore_reports"),
     UNIGNORE_REPORTS("/api/unignore_reports"),
-    GET_REPORTED_COMMENTS("/r/%s/about/reports/?only=comments&limit=%d"),
-    GET_REPORTED_SUBMISSIONS("/r/%s/about/reports/?only=links&limit=%d"),
-    GET_SPAM_COMMENTS("/r/%s/about/spam/?only=comments&limit=%d"),
-    GET_SPAM_SUBMISSIONS("/r/%s/about/spam/?only=links&limit=%d");
+    MODERATION_COMMENTS("/r/%s/about/%s/?only=comments&limit=%d"),
+    MODERATION_SUBMISSIONS("/r/%s/about/%s/?only=comments&limit=%d"),
+    APPROVE("/api/approve"),
+    REMOVE("/api/remove"),
+    DISTINGUISH("/api/distinguish");
 
 
 

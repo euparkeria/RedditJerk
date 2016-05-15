@@ -1,5 +1,7 @@
 package ga.dryco.JerkTest;
 
+import ga.dryco.redditJerk.Distinguish;
+import ga.dryco.redditJerk.Moderation;
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 
@@ -19,9 +21,10 @@ public class clientTest {
 
       //  rApi.accept_mod_invite("flairtestsubreddit");
 
-        List<Link> rlist = rApi.getSpamSubmission("flairtestsubreddit", 100);
+        List<Link> rlist = rApi.getModerationReportsSubmissions("flairtestsubreddit", Moderation.UNMODERATED, 100);
         for(Link lnk:rlist){
             System.out.println(lnk.getTitle());
+            rApi.distinguish(lnk.getName(), Distinguish.SPECIAL);
         }
 
         //rApi.leave_moderation("flairtestsubreddit");

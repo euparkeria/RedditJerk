@@ -157,6 +157,8 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
+
+
     public List<Comment> getSubredditComments(String subreddit, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_COMMENTS, subreddit, limit);
 
@@ -164,34 +166,25 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public List<Comment> getReportedComments(String subreddit, Integer limit){
-        String requesturl = String.format(ApiURL + Endpoints.GET_REPORTED_COMMENTS, subreddit, limit);
 
-        return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
-
-    }
-
-    public List<Link> getReportedSubmission(String subreddit, Integer limit){
-        String requesturl = String.format(ApiURL + Endpoints.GET_REPORTED_SUBMISSIONS, subreddit, limit);
+    public List<Link> getModerationReportsSubmissions(String subreddit, Moderation modreport, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.MODERATION_SUBMISSIONS, subreddit, modreport, limit);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(cmt -> (Link) cmt).collect(Collectors.toList());
 
     }
 
-
-    public List<Comment> getSpamComments(String subreddit, Integer limit){
-        String requesturl = String.format(ApiURL + Endpoints.GET_SPAM_COMMENTS, subreddit, limit);
+    public List<Comment> getModerationReportsComments(String subreddit, Moderation modreport, Integer limit){
+        String requesturl = String.format(ApiURL + Endpoints.MODERATION_COMMENTS, subreddit, modreport, limit);
 
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
 
     }
 
-    public List<Link> getSpamSubmission(String subreddit, Integer limit){
-        String requesturl = String.format(ApiURL + Endpoints.GET_SPAM_SUBMISSIONS, subreddit, limit);
 
-        return this.getListings(requesturl, limit, T3Listing.class).stream().map(cmt -> (Link) cmt).collect(Collectors.toList());
 
-    }
+
+
 
 
     // list can be of comments, links, or subreddit objects
@@ -380,6 +373,42 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    public final void approve(String fullnameId){
+        String requesturl = ApiURL + Endpoints.APPROVE;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    public final void remove(String fullnameId, Boolean spam){
+        String requesturl = ApiURL + Endpoints.REMOVE;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+        urlParameters.add(new BasicNameValuePair("spam", spam.toString()));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    public final void distinguish(String fullnameId, Distinguish distinguish){
+        String requesturl = ApiURL + Endpoints.DISTINGUISH;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("how", distinguish.toString()));
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+
+
+
     /**
      * The reddit API requires subreddit fullId instead of Name to leave moderation so we do another api call here
      * to get the fullid from a subreddit name
@@ -388,6 +417,18 @@ public final class RedditApi implements Reddit  {
      */
     public final void leave_moderation(String subreddit){
         String requesturl = ApiURL + Endpoints.LEAVE_MODERATOR;
+
+        String subFullId = this.getSubreddit(subreddit).getName();
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("id", subFullId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+    }
+
+    public final void leave_contributor(String subreddit){
+        String requesturl = ApiURL + Endpoints.LEAVE_CONTRIBUTOR;
 
         String subFullId = this.getSubreddit(subreddit).getName();
 
@@ -431,7 +472,7 @@ public final class RedditApi implements Reddit  {
         List<T> listinglist = new ArrayList<>();
         List<E> submlist = new ArrayList<>();
         //TODO: make the last request partial
-        System.out.println(requesturl);
+        //System.out.println(requesturl);
         for(int i=0;i<=querynum;i++){
             requesturl = requesturl + "&after=" + afterid;
             T listing = this.getDataObject(makeHttpRequest(requesturl), type);
