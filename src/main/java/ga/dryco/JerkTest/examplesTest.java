@@ -11,7 +11,6 @@ public class examplesTest {
 
 
         //Getting the api instance with useragent as parameter:
-
         Reddit red = RedditApi.getRedditInstance("Reddit client test v1313");
 
         //OAuth login, returns User object of the logged in account
@@ -31,27 +30,34 @@ public class examplesTest {
 
         //Getting a Subreddit object of a subreddit
         Subreddit amSubr = red.getSubreddit("ShitAmericansSay");
+
         //and getting it's front page
         List<Link> amlinkList = amSubr.getHot(25);
 
         //Replying to a submittion
-
         RedditThread post = red.getRedditThread("https://www.reddit.com/r/Economics/comments/46lkfz/can_sanders_do_it_is_it_plausible_that_there/d06k38f");
 
         Link subm = post.getSubmissionPost().getData();
         Comment myComment2 = subm.reply("South Park is Awesome!! :P");
+
         //Editing our comment
         myComment2.edit("South Park is SUPER Awesome!! :PPP");
 
         //upvoting the submission
         subm.upvote();
-        //hiding the submission
-        subm.hide();
 
+        //hiding and unhiding the submission
+        subm.hide();
+        subm.unhide();
+
+        //Subscribe and unsibscribe from subreddits
+        red.subscribe("Socialism");
+        red.unsubscribe("Funny");
 
         //Reaplying to first comment in the thread, myComment is the object of the comment you just posted.
         Comment firstComment = post.getFlatComments().get(0);
         Comment myComment1 = firstComment.reply("Hello!");
+
         //we can immidately delete our new comment
         myComment1.delete();
 
@@ -60,6 +66,7 @@ public class examplesTest {
 
         //get top 5 submittions of the week in /r/learnprogramming
         List<Link> learnPrgrTop = red.getSubredditPage("learnprogramming", 5, Sorting.TOP, FromPast.WEEK);
+
         //getting /r/learnprogramming's moderators
         List<User> learnPrgMods = red.getSubredditModerators("learnprogramming");
 

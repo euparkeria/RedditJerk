@@ -36,4 +36,8 @@ public class Comment extends T1Data implements Post {
         rApi.hide(super.getName());
     }
 
+    public void unhide(){
+        rApi.unhide(super.getName());
+    }
+
 }

@@ -32,4 +32,7 @@ public class Link extends T3Data implements Post{
         rApi.hide(super.getName());
     }
 
+    public void unhide(){
+        rApi.unhide(super.getName());
+    }
 }

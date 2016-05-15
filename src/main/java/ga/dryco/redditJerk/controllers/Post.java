@@ -12,4 +12,5 @@ public interface Post extends Thingy{
     void downvote() ;
     Post reply(String text) ;
     void hide();
+    void unhide();
 }
