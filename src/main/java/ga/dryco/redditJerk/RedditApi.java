@@ -462,6 +462,80 @@ public final class RedditApi implements Reddit  {
     }
 
 
+    /**
+     *
+     * Flair Api
+     *
+
+     */
+
+    public void deleteFlair(String subreddit, String username){
+        String requesturl = String.format(ApiURL + Endpoints.DELETE_FLAIR, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("name", username));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public void clearFlairTemplates(String subreddit, String flairtype){
+        String requesturl = String.format(ApiURL + Endpoints.CLEAR_FLAIR_TEMPLATES, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("flair_type", flairtype));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public void deleteFlairTemplate(String subreddit, String flairTemplateId){
+        String requesturl = String.format(ApiURL + Endpoints.DELETE_FLAIR_TEMPLATE, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("flair_template_id", flairTemplateId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public void userFlair(String subreddit, String name, String text, String css_class){
+        String requesturl = String.format(ApiURL + Endpoints.FLAIR, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("css_class", css_class));
+        urlParameters.add(new BasicNameValuePair("name", name));
+        urlParameters.add(new BasicNameValuePair("text", text));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public void linkFlair(String subreddit, String link_fullName, String text, String css_class){
+        String requesturl = String.format(ApiURL + Endpoints.FLAIR, subreddit);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("link", link_fullName));
+        urlParameters.add(new BasicNameValuePair("text", text));
+        urlParameters.add(new BasicNameValuePair("css_class", css_class));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+
+
+
 
 
     private <T extends Thing<? extends ListingData>, E extends Thing> List<Thingy> getListings

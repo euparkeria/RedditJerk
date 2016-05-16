@@ -33,7 +33,11 @@ enum Endpoints {
     MODERATION_SUBMISSIONS("/r/%s/about/%s/?only=comments&limit=%d"),
     APPROVE("/api/approve"),
     REMOVE("/api/remove"),
-    DISTINGUISH("/api/distinguish");
+    DISTINGUISH("/api/distinguish"),
+    DELETE_FLAIR("/r/%s/api/deleteflair"),
+    CLEAR_FLAIR_TEMPLATES("/r/%s/api/clearflairtemplates"),
+    DELETE_FLAIR_TEMPLATE("/r/%s/api/deleteflairtemplate"),
+    FLAIR("/r/%s/api/flair");
 
 
 

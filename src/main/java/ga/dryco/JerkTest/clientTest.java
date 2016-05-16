@@ -21,14 +21,16 @@ public class clientTest {
 
       //  rApi.accept_mod_invite("flairtestsubreddit");
 
-        List<Link> rlist = rApi.getModerationReportsSubmissions("flairtestsubreddit", Moderation.UNMODERATED, 100);
-        for(Link lnk:rlist){
-            System.out.println(lnk.getTitle());
-            rApi.distinguish(lnk.getName(), Distinguish.SPECIAL);
-        }
+     //   List<Link> rlist = rApi.getModerationReportsSubmissions("flairtestsubreddit", Moderation.UNMODERATED, 100);
+     //   for(Link lnk:rlist){
+     //       System.out.println(lnk.getTitle());
+     //       rApi.distinguish(lnk.getName(), Distinguish.SPECIAL);
+    //    }
 
+        //rApi.clearFlairTemplates("flairtestsubreddit", "USER_FLAIR");
         //rApi.leave_moderation("flairtestsubreddit");
-
+        rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST", "");
+        rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
 
 
         //System.out.println(rApi.authData.getAccessTokenJson());

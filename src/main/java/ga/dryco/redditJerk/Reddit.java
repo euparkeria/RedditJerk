@@ -46,5 +46,10 @@ public interface Reddit {
     void distinguish(String fullnameId, Distinguish distinguish);
     void leave_contributor(String subreddit);
     void unignore_reports(String thingFullId);
+    void deleteFlair(String subreddit, String username);
+    void clearFlairTemplates(String subreddit, String flairtype);
+    void deleteFlairTemplate(String subreddit, String flairTemplateId);
+    void linkFlair(String subreddit, String link_fullName, String text, String css_class);
+    void userFlair(String subreddit, String name, String text, String css_class);
 
 }

@@ -139,8 +139,19 @@ public class examplesTest {
         red.getModerationReportsComments("Movies", Moderation.EDITED, 20);
 
 
+        /**
+         * Flair API
+         *
+         */
+        //Clear the Flair templates, second argument should be either ""USER_FLAIR" for user flairs
+        // or "LINK_FLAIR" for the link flairs
+        red.clearFlairTemplates("flairtestsubreddit", "USER_FLAIR");
 
+        //Set flair to a link, last argument is css_class, it can be left empty if none
+        red.linkFlair("Movies", "t3_4jlhec", "GREATEST", "");
 
+        //Set flair to a User, last argument is css_class, it can be left empty if none
+        red.userFlair("Movies", "kakunas", "CRAP!!", "");
 
 
 
