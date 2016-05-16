@@ -16,8 +16,16 @@ public class Subreddit extends T5Data implements Thingy{
        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.HOT, FromPast.DAY);
     }
 
+    public List<Link> getHot(Integer limit, FromPast timespan)  {
+        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.HOT, timespan);
+    }
+
     public List<Link> getNew(Integer limit)  {
         return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.NEW, FromPast.DAY);
+    }
+
+    public List<Link> getNew(Integer limit, FromPast timespan)  {
+        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.NEW, timespan);
     }
 
     public List<Link> getTop(Integer limit)  {
@@ -25,8 +33,17 @@ public class Subreddit extends T5Data implements Thingy{
 
     }
 
+    public List<Link> getTop(Integer limit, FromPast timespan)  {
+        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.TOP, timespan);
+
+    }
+
     public List<Link> getControversial(Integer limit){
         return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.CONTROVERSIAL, FromPast.DAY);
+    }
+
+    public List<Link> getControversial(Integer limit, FromPast timespan){
+        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.CONTROVERSIAL, timespan);
     }
 
     public List<Link> getRising(Integer limit){
@@ -35,6 +52,14 @@ public class Subreddit extends T5Data implements Thingy{
 
     public List<Comment> getComments(Integer limit){
         return rApi.getSubredditComments(super.getDisplayName(), limit);
+    }
+
+    public void subscribe(){
+        rApi.subscribe(super.getDisplayName());
+    }
+
+    public void unsubscribe(){
+        rApi.unsubscribe(super.getDisplayName());
     }
 
 

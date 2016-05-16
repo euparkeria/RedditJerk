@@ -31,6 +31,25 @@ public class examplesTest {
         //Getting a Subreddit object of a subreddit
         Subreddit amSubr = red.getSubreddit("ShitAmericansSay");
 
+        //get /r/ShitAmericansSay 50 controversial submissions
+        amSubr.getControversial(50);
+
+        //get /r/ShitAmericansSay top 10 submissions, default timespan is DAY
+        amSubr.getTop(10);
+
+        //we can also specify the timespan
+        amSubr.getTop(100, FromPast.ALL_TIME);
+        amSubr.getTop(100, FromPast.WEEK);
+
+        //Subscribe to the subreddit
+        amSubr.subscribe();
+        //Unsubscribe
+        amSubr.unsubscribe();
+
+        //Subscribe and unsibscribe from subreddits without gettinga Subreddit object
+        red.subscribe("Socialism");
+        red.unsubscribe("Funny");
+
         //and getting it's front page
         List<Link> amlinkList = amSubr.getHot(25);
 
@@ -49,10 +68,6 @@ public class examplesTest {
         //hiding and unhiding the submission
         subm.hide();
         subm.unhide();
-
-        //Subscribe and unsibscribe from subreddits
-        red.subscribe("Socialism");
-        red.unsubscribe("Funny");
 
         //Reaplying to first comment in the thread, myComment is the object of the comment you just posted.
         Comment firstComment = post.getFlatComments().get(0);

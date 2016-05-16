@@ -1,5 +1,6 @@
 package ga.dryco.redditJerk.controllers;
 
+import ga.dryco.redditJerk.Distinguish;
 import ga.dryco.redditJerk.Reddit;
 import ga.dryco.redditJerk.RedditApi;
 import ga.dryco.redditJerk.datamodels.T3Data;
@@ -34,5 +35,17 @@ public class Link extends T3Data implements Post{
 
     public void unhide(){
         rApi.unhide(super.getName());
+    }
+
+    public void approve(){
+        rApi.approve(super.getName());
+    }
+
+    public void remove(Boolean spam){
+        rApi.remove(super.getName(), spam);
+    }
+
+    public void distinguish(Distinguish distinguish){
+        rApi.distinguish(super.getName(), distinguish);
     }
 }

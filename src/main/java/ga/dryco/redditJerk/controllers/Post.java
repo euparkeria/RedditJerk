@@ -1,6 +1,7 @@
 package ga.dryco.redditJerk.controllers;
 
 
+import ga.dryco.redditJerk.Distinguish;
 
 /**
  * Interface for Links and Comments
@@ -13,4 +14,7 @@ public interface Post extends Thingy{
     Post reply(String text) ;
     void hide();
     void unhide();
+    void remove(Boolean spam);
+    void approve();
+    void distinguish(Distinguish distinguish);
 }
