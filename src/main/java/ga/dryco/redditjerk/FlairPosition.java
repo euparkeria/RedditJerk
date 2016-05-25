@@ -4,7 +4,6 @@ public enum FlairPosition {
     LEFT("left"),
     RIGHT("right");
 
-
     private String position;
 
     FlairPosition(String position){

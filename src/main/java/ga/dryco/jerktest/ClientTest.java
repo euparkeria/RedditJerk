@@ -16,7 +16,7 @@ public class ClientTest {
 
         //rApi.subscribe("flairtestsubreddit");
 
-      //  rApi.accept_mod_invite("flairtestsubreddit");
+      //  rApi.acceptModInvite("flairtestsubreddit");
 
      //   List<Link> rlist = rApi.getModerationReportsSubmissions("flairtestsubreddit", Moderation.UNMODERATED, 100);
      //   for(Link lnk:rlist){
@@ -25,7 +25,7 @@ public class ClientTest {
     //    }
 
         //rApi.clearFlairTemplates("flairtestsubreddit", "USER_FLAIR");
-        //rApi.leave_moderation("flairtestsubreddit");
+        //rApi.leaveModeration("flairtestsubreddit");
      //   rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST", "");
       //  rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
 

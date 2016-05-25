@@ -369,7 +369,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public final void accept_mod_invite(String subreddit){
+    public final void acceptModInvite(String subreddit){
         String requesturl = String.format(ApiURL + Endpoints.ACCEPT_MOD_INVITE, subreddit);
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -421,7 +421,7 @@ public final class RedditApi implements Reddit  {
      *
      * @param subreddit
      */
-    public final void leave_moderation(String subreddit){
+    public final void leaveModeration(String subreddit){
         String requesturl = ApiURL + Endpoints.LEAVE_MODERATOR;
 
         String subFullId = this.getSubreddit(subreddit).getName();
@@ -433,7 +433,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public final void leave_contributor(String subreddit){
+    public final void leaveContributor(String subreddit){
         String requesturl = ApiURL + Endpoints.LEAVE_CONTRIBUTOR;
 
         String subFullId = this.getSubreddit(subreddit).getName();
@@ -445,7 +445,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public final void ignore_reports(String thingFullId){
+    public final void ignoreReports(String thingFullId){
         String requesturl = ApiURL + Endpoints.IGNORE_REPORTS;
 
         List<NameValuePair> urlParameters = new ArrayList<>();
@@ -456,7 +456,7 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public final void unignore_reports(String thingFullId){
+    public final void unignoreReports(String thingFullId){
         String requesturl = ApiURL + Endpoints.UNIGNORE_REPORTS;
 
         List<NameValuePair> urlParameters = new ArrayList<>();

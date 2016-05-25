@@ -23,7 +23,7 @@ public class ExamplesTest {
         List<Comment> clist = jerkUser.getComments(200, Sorting.NEW);
 
         //getting user's top 100 submissions
-        List<Link> slist = jerkUser.getSubmitted(100,Sorting.TOP);
+        List<Link> slist = jerkUser.getSubmitted(100, Sorting.TOP);
 
         //Getting user's Karma Balance in a moronic subreddit for his last 200 comments
         Integer karmaBalance = jerkUser.getKarmaBalance("MensRights", 200);
@@ -108,10 +108,10 @@ public class ExamplesTest {
          */
 
         //Accept an invitation to be moderator in /r/Movies
-        red.accept_mod_invite("Movies");
+        red.acceptModInvite("Movies");
 
         //Leaving as moderator in /r/Videos
-        red.leave_moderation("Videos");
+        red.leaveModeration("Videos");
 
         red.approve("t3_4jeqzj");
 
@@ -119,10 +119,10 @@ public class ExamplesTest {
         red.remove("t3_4jeqzj", true);
 
         //Ignore reports from a thing, submission or comment fullId.
-        red.ignore_reports("t3_4jeqzj");
+        red.ignoreReports("t3_4jeqzj");
 
         //unignore
-        red.unignore_reports("t3_4jeqzj");
+        red.unignoreReports("t3_4jeqzj");
 
         //Distinguish
         red.distinguish("t3_4jeqzj", Distinguish.YES);

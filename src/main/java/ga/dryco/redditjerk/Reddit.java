@@ -36,16 +36,16 @@ public interface Reddit {
     void subscribe(String subreddit);
     void unsubscribe(String subreddit);
 
-    void accept_mod_invite(String subreddit);
-    void leave_moderation(String subreddit);
-    void ignore_reports(String thingFullId);
+    void acceptModInvite(String subreddit);
+    void leaveModeration(String subreddit);
+    void ignoreReports(String thingFullId);
     List<Comment> getModerationReportsComments(String subreddit, Moderation modreport, Integer limit);
     List<Link> getModerationReportsSubmissions(String subreddit, Moderation modreport, Integer limit);
     void approve(String fullnameId);
     void remove(String fullnameId, Boolean spam);
     void distinguish(String fullnameId, Distinguish distinguish);
-    void leave_contributor(String subreddit);
-    void unignore_reports(String thingFullId);
+    void leaveContributor(String subreddit);
+    void unignoreReports(String thingFullId);
     void deleteFlair(String subreddit, String username);
     void clearFlairTemplates(String subreddit, String flairtype);
     void deleteFlairTemplate(String subreddit, String flairTemplateId);
