@@ -67,7 +67,8 @@ as simple as possible to use and implement many high level utility methods usual
     //this will make a lot of api calls and take a long time.
     post.fetchMoreComments(true);
     List<Comment> ALLflatComments = post.getFlatComments();
-
+    
+    //Getting the Link(Submission) object of the Thread and replying to it
     Link subm = post.getSubmissionPost().getData();
     Comment myComment2 = subm.reply("South Park is Awesome!! :P");
 
