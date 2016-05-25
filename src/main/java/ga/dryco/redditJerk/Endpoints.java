@@ -37,7 +37,8 @@ enum Endpoints {
     DELETE_FLAIR("/r/%s/api/deleteflair"),
     CLEAR_FLAIR_TEMPLATES("/r/%s/api/clearflairtemplates"),
     DELETE_FLAIR_TEMPLATE("/r/%s/api/deleteflairtemplate"),
-    FLAIR("/r/%s/api/flair");
+    FLAIR("/r/%s/api/flair"),
+    MORE_CHILDREN("/api/morechildren?api_type=json&children=%s&link_id=%s&sort=%s");
 
 
 

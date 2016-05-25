@@ -125,8 +125,8 @@ public class test2 {
 
         }
         System.out.println(post.getFlatComments().size());
-        System.out.println(post.getMoreComments().size());
-        System.out.println(post.getMoreComments().get(0).getData().getChildren().get(0));
+        System.out.println(post.getMoreObjects().size());
+        System.out.println(post.getMoreObjects().get(0).getData().getChildren().get(0));
 
 
         List<Comment> clist = user.getComments(299, "new");

@@ -2,10 +2,10 @@ package ga.dryco.redditJerk;
 
 
 import ga.dryco.redditJerk.controllers.*;
+import ga.dryco.redditJerk.datamodels.MoreChildren;
 
 import java.net.MalformedURLException;
 import java.util.List;
-import java.util.StringJoiner;
 
 
 public interface Reddit {
@@ -51,5 +51,6 @@ public interface Reddit {
     void deleteFlairTemplate(String subreddit, String flairTemplateId);
     void linkFlair(String subreddit, String link_fullName, String text, String css_class);
     void userFlair(String subreddit, String name, String text, String css_class);
+    MoreChildren getMoreChildren(List<String> idList, String linkId, Sorting sort);
 
 }

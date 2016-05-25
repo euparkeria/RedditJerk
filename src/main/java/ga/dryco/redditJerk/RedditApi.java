@@ -3,6 +3,7 @@ package ga.dryco.redditJerk;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
+import com.sun.deploy.util.StringUtils;
 import ga.dryco.redditJerk.controllers.*;
 import ga.dryco.redditJerk.datamodels.*;
 import ga.dryco.redditJerk.datamodels.Deserializers.*;
@@ -37,6 +38,7 @@ public final class RedditApi implements Reddit  {
         gsonBuilder.registerTypeAdapter(OverviewData.class, new OverviewDeserializer());
         gsonBuilder.registerTypeAdapter(PostReturn.class, new PostReturnDeserializer());
         gsonBuilder.registerTypeAdapter(T1Listing.class, new T1ListingDeserializer());
+        gsonBuilder.registerTypeAdapter(MoreChildren.class, new MoreChildrenDeserializer());
         this.gson = gsonBuilder.create();
 
     }
@@ -98,11 +100,21 @@ public final class RedditApi implements Reddit  {
         return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }
 
+    public MoreChildren getMoreChildren(List<String> idList, String linkId, Sorting sort){
+        //System.out.println("Number of ids:" + idList);
+        String idListComma = StringUtils.join(idList, ",");
+        String requesturl = String.format(ApiURL + Endpoints.MORE_CHILDREN, idListComma, linkId, sort);
+
+        return this.getDataObject(makeHttpRequest(requesturl), MoreChildren.class);
+    }
+
+
     public Overview getOverview(String username, Integer limit, Sorting sort)  {
         String requesturl = String.format(ApiURL + Endpoints.OVERVIEW, username, limit, sort);
 
         return this.getDataObject(makeHttpRequest(requesturl), Overview.class);
     }
+
 
     public Subreddit getSubreddit(String subreddit)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT, subreddit);
@@ -180,12 +192,6 @@ public final class RedditApi implements Reddit  {
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(cmt -> (Comment) cmt).collect(Collectors.toList());
 
     }
-
-
-
-
-
-
 
     // list can be of comments, links, or subreddit objects
     public List<Subreddit> getInfo_subreddit(List<String> idList){
@@ -534,27 +540,12 @@ public final class RedditApi implements Reddit  {
     }
 
 
-
-
-
-
     private <T extends Thing<? extends ListingData>, E extends Thing> List<Thingy> getListings
             (String requesturl, Integer limit, Class<T> type)  {
-        Double querynumd = (limit / 100) + 0.5;
-        int querynum = querynumd.intValue();
-        String afterid = "";
-        List<T> listinglist = new ArrayList<>();
-        List<E> submlist = new ArrayList<>();
-        //TODO: make the last request partial
-        //System.out.println(requesturl);
-        for(int i=0;i<=querynum;i++){
-            requesturl = requesturl + "&after=" + afterid;
-            T listing = this.getDataObject(makeHttpRequest(requesturl), type);
-            listinglist.add(listing);
-            afterid = listing.getData().getAfter();
 
-            if(afterid == null) break;
-        }
+        List<T> listinglist = this.getRawListings(requesturl, limit, type);
+
+        List<E> submlist = new ArrayList<>();
 
         for(T t1lst:listinglist){
             //submlist.addAll((List<E>)t1lst.getData().getChildren().stream().collect(Collectors.toList()));
@@ -569,13 +560,40 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    private <T extends Thing<? extends ListingData>> List<T> getRawListings(String requesturl, Integer limit, Class<T> type){
+
+        Integer MAX_ITEMS_PER_QUERY = 100;
+
+        Double querynumd = (limit / MAX_ITEMS_PER_QUERY) + 0.5;
+        int querynum = querynumd.intValue();
+        String afterid = "";
+        List<T> listinglist = new ArrayList<>();
+        //TODO: make the last request partial
+        //System.out.println(requesturl);
+        for(int i=0;i<=querynum;i++){
+            requesturl = requesturl + "&after=" + afterid;
+            T listing = this.getDataObject(makeHttpRequest(requesturl), type);
+            listinglist.add(listing);
+            afterid = listing.getData().getAfter();
+
+            if(afterid == null) break;
+        }
+
+        return listinglist;
+
+
+
+    }
+
 
     private String makeHttpRequest(String requesturl){
         return client.get(requesturl);
     }
 
     private String makeHttpRequest(String requesturl, List<NameValuePair> urlParameters){
+        //System.out.println("Post URL parameters:" + urlParameters);
         return client.post(requesturl, urlParameters);
+
     }
 
 

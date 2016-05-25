@@ -1,17 +1,19 @@
 package ga.dryco.JerkTest;
 
-import ga.dryco.redditJerk.Distinguish;
-import ga.dryco.redditJerk.Moderation;
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
+import ga.dryco.redditJerk.*;
 
 import ga.dryco.redditJerk.controllers.*;
+import ga.dryco.redditJerk.datamodels.MoreChildren;
+import ga.dryco.redditJerk.datamodels.T1;
+import ga.dryco.redditJerk.datamodels.T1Listing;
 
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class clientTest {
-    public static void main(String[] args){
+    public static void main(String[] args) throws MalformedURLException {
         Reddit rApi = RedditApi.getRedditInstance("Test clv1");
 
 
@@ -29,10 +31,42 @@ public class clientTest {
 
         //rApi.clearFlairTemplates("flairtestsubreddit", "USER_FLAIR");
         //rApi.leave_moderation("flairtestsubreddit");
-        rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST", "");
-        rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
+     //   rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST", "");
+      //  rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
 
 
+        RedditThread rthread1 = rApi.getRedditThread("https://www.reddit.com/r/science/comments/4kvf0i/nasa_ama_we_are_expanding_the_first_humanrated/");
+        rthread1.fetchMoreComments(true);
+        System.out.println(rthread1.getFlatComments().size());
+        for(Comment com:rthread1.getFlatComments()){
+            System.out.println(com.getBody());
+        }
+
+        System.out.println(rthread1.getFlatComments().size());
+
+
+/*
+        List<String> idList = new ArrayList<>();
+        idList.add("d3bw0lf");
+        idList.add("d3bw0le");
+
+        MoreChildren mm = rApi.getMoreChildren(idList,"t3_4k2p3f");
+        T1Listing tt = mm.getMoreChildrenComments();
+        System.out.println(tt.getData().getChildren().size());
+        for(T1 com: tt.getData().getChildren()){
+            System.out.println(com.getData().getBody());
+
+        }
+*/
+
+
+/*
+        List<Comment> uCom = rApi.getUserComments("iamwiththedconsnow", 10000, Sorting.NEW);
+        for(Comment c:uCom){
+            System.out.println(c.getReplies());
+        }
+        System.out.println(uCom.size());
+        /*
         //System.out.println(rApi.authData.getAccessTokenJson());
         //User myuser = rApi.me();
         //System.out.println(myuser.getName());

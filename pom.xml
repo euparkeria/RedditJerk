@@ -4,7 +4,7 @@
   <groupId>ga.dryco</groupId>
   <artifactId>RedditJerk</artifactId>
   <packaging>jar</packaging>
-  <version>1.5-SNAPSHOT</version>
+  <version>1.55-SNAPSHOT</version>
   <name>RedditJerk</name>
   <url>https://github.com/euparkeria/RedditJerk/</url>
 

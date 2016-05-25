@@ -53,8 +53,16 @@ public class examplesTest {
         //and getting it's front page
         List<Link> amlinkList = amSubr.getHot(25);
 
-        //Replying to a submittion
+        //Getting a reddit Thread object
         RedditThread post = red.getRedditThread("https://www.reddit.com/r/Economics/comments/46lkfz/can_sanders_do_it_is_it_plausible_that_there/d06k38f");
+
+        //We can flatten comments like this, this will return all the comments in the thread as a flat list, not inclding the MoreComments hidden comments.
+        List<Comment> flatComments = post.getFlatComments();
+
+        //If you want to get ALL the comments you should set fetchMoreComments property of the thread object to true
+        //before you get the flat comments, this will make a lot of api calls and take a long time.
+        post.fetchMoreComments(true);
+        List<Comment> ALLflatComments = post.getFlatComments();
 
         Link subm = post.getSubmissionPost().getData();
         Comment myComment2 = subm.reply("South Park is Awesome!! :P");
