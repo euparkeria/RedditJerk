@@ -1,18 +1,13 @@
-package ga.dryco.JerkTest;
+package ga.dryco.jerktest;
 
-import ga.dryco.redditJerk.*;
+import ga.dryco.redditjerk.*;
 
-import ga.dryco.redditJerk.controllers.*;
-import ga.dryco.redditJerk.datamodels.MoreChildren;
-import ga.dryco.redditJerk.datamodels.T1;
-import ga.dryco.redditJerk.datamodels.T1Listing;
+import ga.dryco.redditjerk.controllers.*;
 
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class clientTest {
+public class ClientTest {
     public static void main(String[] args) throws MalformedURLException {
         Reddit rApi = RedditApi.getRedditInstance("Test clv1");
 
@@ -35,7 +30,7 @@ public class clientTest {
       //  rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
 
 
-        RedditThread rthread1 = rApi.getRedditThread("https://www.reddit.com/r/science/comments/4kvf0i/nasa_ama_we_are_expanding_the_first_humanrated/");
+        RedditThread rthread1 = rApi.getRedditThread("https://www.reddit.com/r/science/comments/4kvf0i/nasa_ama_we_are_expanding_the_first_humanrated/", Sorting.NEW);
         rthread1.fetchMoreComments(true);
         System.out.println(rthread1.getFlatComments().size());
         for(Comment com:rthread1.getFlatComments()){

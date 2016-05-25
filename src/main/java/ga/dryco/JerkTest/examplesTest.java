@@ -1,17 +1,17 @@
-package ga.dryco.JerkTest;
+package ga.dryco.jerktest;
 
-import ga.dryco.redditJerk.*;
-import ga.dryco.redditJerk.controllers.*;
+import ga.dryco.redditjerk.*;
+import ga.dryco.redditjerk.controllers.*;
 
 import java.net.MalformedURLException;
 import java.util.List;
 
-public class examplesTest {
+public class ExamplesTest {
     public static void main(String[] args) throws MalformedURLException {
 
 
         //Getting the api instance with useragent as parameter:
-        Reddit red = RedditApi.getRedditInstance("Reddit client test v1313");
+        Reddit red = RedditApi.getRedditInstance("Reddit client Test v1313");
 
         //OAuth login, returns User object of the logged in account
         User myUser = red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
@@ -54,9 +54,11 @@ public class examplesTest {
         List<Link> amlinkList = amSubr.getHot(25);
 
         //Getting a reddit Thread object
-        RedditThread post = red.getRedditThread("https://www.reddit.com/r/Economics/comments/46lkfz/can_sanders_do_it_is_it_plausible_that_there/d06k38f");
+        RedditThread post = red.getRedditThread(
+                "https://www.reddit.com/r/Economics/comments/46lkfz/can_sanders_do_it_is_it_plausible_that_there/d06k38f", Sorting.NEW);
 
-        //We can flatten comments like this, this will return all the comments in the thread as a flat list, not inclding the MoreComments hidden comments.
+        //We can flatten comments like this, this will return all the comments in the
+        // thread as a flat list, not inclding the MoreComments hidden comments.
         List<Comment> flatComments = post.getFlatComments();
 
         //If you want to get ALL the comments you should set fetchMoreComments property of the thread object to true

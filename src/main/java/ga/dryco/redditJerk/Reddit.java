@@ -1,8 +1,8 @@
-package ga.dryco.redditJerk;
+package ga.dryco.redditjerk;
 
 
-import ga.dryco.redditJerk.controllers.*;
-import ga.dryco.redditJerk.datamodels.MoreChildren;
+import ga.dryco.redditjerk.controllers.*;
+import ga.dryco.redditjerk.datamodels.MoreChildren;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface Reddit {
     User getUser(String username);
-    RedditThread getRedditThread(String url) throws MalformedURLException;
+    RedditThread getRedditThread(String url, Sorting sort) throws MalformedURLException;
     Subreddit getSubreddit(String subredditname);
     Overview getOverview(String username, Integer limit, Sorting sort);
     List<Link> getUserSubmissions(String username, Integer limit, Sorting sort);

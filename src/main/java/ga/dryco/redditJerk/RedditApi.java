@@ -1,14 +1,14 @@
-package ga.dryco.redditJerk;
+package ga.dryco.redditjerk;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.sun.deploy.util.StringUtils;
-import ga.dryco.redditJerk.controllers.*;
-import ga.dryco.redditJerk.datamodels.*;
-import ga.dryco.redditJerk.datamodels.Deserializers.*;
-import ga.dryco.redditJerk.exceptions.RedditJerkException;
-import ga.dryco.redditJerk.rest.OAuthClient;
+import ga.dryco.redditjerk.controllers.*;
+import ga.dryco.redditjerk.datamodels.*;
+import ga.dryco.redditjerk.datamodels.deserializers.*;
+import ga.dryco.redditjerk.exceptions.RedditJerkException;
+import ga.dryco.redditjerk.rest.OAuthClient;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.net.MalformedURLException;
@@ -91,11 +91,11 @@ public final class RedditApi implements Reddit  {
 
     }
 
-    public RedditThread getRedditThread(String url) throws MalformedURLException {
+    public RedditThread getRedditThread(String url, Sorting sort) throws MalformedURLException {
         URL purl = new URL(url);
         url = purl.getPath();
 
-        String requesturl = ApiURL + url;
+        String requesturl = String.format(ApiURL + Endpoints.REDDIT_THREAD, url, sort);
 
         return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }

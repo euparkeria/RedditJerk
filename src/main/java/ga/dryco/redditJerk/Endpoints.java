@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk;
+package ga.dryco.redditjerk;
 
 enum Endpoints {
     USER("user/%s/about/"),
@@ -38,10 +38,8 @@ enum Endpoints {
     CLEAR_FLAIR_TEMPLATES("/r/%s/api/clearflairtemplates"),
     DELETE_FLAIR_TEMPLATE("/r/%s/api/deleteflairtemplate"),
     FLAIR("/r/%s/api/flair"),
-    MORE_CHILDREN("/api/morechildren?api_type=json&children=%s&link_id=%s&sort=%s");
-
-
-
+    MORE_CHILDREN("/api/morechildren?api_type=json&children=%s&link_id=%s&sort=%s"),
+    REDDIT_THREAD("%s?sort=%s");
 
     private String url;
 
