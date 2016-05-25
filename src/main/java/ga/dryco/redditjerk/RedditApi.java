@@ -472,8 +472,24 @@ public final class RedditApi implements Reddit  {
      *
      * Flair Api
      *
-
      */
+
+    public final void flairConfig(String flair_enabled, FlairPosition flair_position, Boolean flair_self_assign_enabled, FlairPosition link_flair_position, Boolean link_flair_self_assign_enabled){
+        String requesturl = ApiURL + Endpoints.FLAIR_CONFIG;
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+
+        urlParameters.add(new BasicNameValuePair("api_type", "json"));
+        urlParameters.add(new BasicNameValuePair("flair_enabled", flair_enabled));
+        urlParameters.add(new BasicNameValuePair("flair_position", flair_position.toString()));
+        urlParameters.add(new BasicNameValuePair("flair_self_assign_enabled", flair_self_assign_enabled.toString()));
+        urlParameters.add(new BasicNameValuePair("link_flair_position", link_flair_position.toString()));
+        urlParameters.add(new BasicNameValuePair("link_flair_self_assign_enabled", link_flair_self_assign_enabled.toString()));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
 
     public void deleteFlair(String subreddit, String username){
         String requesturl = String.format(ApiURL + Endpoints.DELETE_FLAIR, subreddit);
@@ -536,6 +552,49 @@ public final class RedditApi implements Reddit  {
 
         this.makeHttpRequest(requesturl, urlParameters);
 
+
+    }
+
+    public final void markNsfw(String fullnameId){
+        String requesturl = ApiURL + Endpoints.MARK_NSFW;
+        List<NameValuePair> urlParameters = new ArrayList<>();
+
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public final void unmarkNsfw(String fullnameId){
+        String requesturl = ApiURL + Endpoints.UNMARK_NSFW;
+        List<NameValuePair> urlParameters = new ArrayList<>();
+
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public final void lock(String fullnameId){
+        String requesturl = ApiURL + Endpoints.LOCK;
+        List<NameValuePair> urlParameters = new ArrayList<>();
+
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
+    public final void unlock(String fullnameId){
+        String requesturl = ApiURL + Endpoints.UNLOCK;
+        List<NameValuePair> urlParameters = new ArrayList<>();
+
+        urlParameters.add(new BasicNameValuePair("id", fullnameId));
+
+        this.makeHttpRequest(requesturl, urlParameters);
 
     }
 

@@ -51,6 +51,11 @@ public interface Reddit {
     void deleteFlairTemplate(String subreddit, String flairTemplateId);
     void linkFlair(String subreddit, String link_fullName, String text, String css_class);
     void userFlair(String subreddit, String name, String text, String css_class);
+    void flairConfig(String flair_enabled, FlairPosition flair_position, Boolean flair_self_assign_enabled, FlairPosition link_flair_position, Boolean link_flair_self_assign_enabled);
     MoreChildren getMoreChildren(List<String> idList, String linkId, Sorting sort);
+    void markNsfw(String fullnameId);
+    void unmarkNsfw(String fullnameId);
+    void lock(String fullnameId);
+    void unlock(String fullnameId);
 
 }

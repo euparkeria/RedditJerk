@@ -38,8 +38,15 @@ enum Endpoints {
     CLEAR_FLAIR_TEMPLATES("/r/%s/api/clearflairtemplates"),
     DELETE_FLAIR_TEMPLATE("/r/%s/api/deleteflairtemplate"),
     FLAIR("/r/%s/api/flair"),
+    FLAIR_CONFIG("/r/subreddit/api/flairconfig"),
     MORE_CHILDREN("/api/morechildren?api_type=json&children=%s&link_id=%s&sort=%s"),
-    REDDIT_THREAD("%s?sort=%s");
+    REDDIT_THREAD("%s?sort=%s"),
+    MARK_NSFW("/api/marknsfw"),
+    UNMARK_NSFW("/api/unmarknsfw"),
+    LOCK("/api/lock"),
+    UNLOCK("/api/unlock")
+    ;
+
 
     private String url;
 
