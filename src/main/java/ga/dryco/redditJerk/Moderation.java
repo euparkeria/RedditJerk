@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk;
+package ga.dryco.redditjerk;
 
 public enum Moderation {
     REPORTED("reports"),

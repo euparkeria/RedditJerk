@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 /**
  * A thread contains a main post(Original Post) and optionally comments

@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 /**
  * Listing is a thing with "data" type of ListingData

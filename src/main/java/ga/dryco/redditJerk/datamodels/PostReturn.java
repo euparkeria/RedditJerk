@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 /**
  * Data class for the JSON returned when POSTing a reply or Link, the deserializer takes care of what to put where

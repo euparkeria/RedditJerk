@@ -1,6 +1,6 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
-import ga.dryco.redditJerk.controllers.Subreddit;
+import ga.dryco.redditjerk.controllers.Subreddit;
 
 /**
  * T5 is Subreddit info type

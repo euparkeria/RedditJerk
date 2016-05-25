@@ -1,9 +1,9 @@
-package ga.dryco.redditJerk.controllers;
+package ga.dryco.redditjerk.controllers;
 
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.Sorting;
-import ga.dryco.redditJerk.datamodels.T2Data;
+import ga.dryco.redditjerk.Reddit;
+import ga.dryco.redditjerk.RedditApi;
+import ga.dryco.redditjerk.Sorting;
+import ga.dryco.redditjerk.datamodels.T2Data;
 
 import java.util.List;
 import java.util.Objects;

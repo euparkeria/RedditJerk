@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 
 import com.google.gson.annotations.Expose;

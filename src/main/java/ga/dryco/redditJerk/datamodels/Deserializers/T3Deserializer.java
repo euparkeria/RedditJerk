@@ -1,9 +1,9 @@
-package ga.dryco.redditJerk.datamodels.Deserializers;
+package ga.dryco.redditjerk.datamodels.deserializers;
 
 import com.google.gson.*;
 
-import ga.dryco.redditJerk.controllers.Link;
-import ga.dryco.redditJerk.datamodels.T3;
+import ga.dryco.redditjerk.controllers.Link;
+import ga.dryco.redditjerk.datamodels.T3;
 
 import java.lang.reflect.Type;
 

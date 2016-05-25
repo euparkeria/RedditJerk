@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk;
+package ga.dryco.redditjerk;
 
 /**
  * Created by madcat on 15/05/2016.

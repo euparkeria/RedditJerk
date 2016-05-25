@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.rest;
+package ga.dryco.redditjerk.rest;
 
 import java.io.Serializable;
 

@@ -1,10 +1,9 @@
-package ga.dryco.redditJerk.datamodels.Deserializers;
+package ga.dryco.redditjerk.datamodels.deserializers;
 
 import com.google.gson.*;
-import ga.dryco.redditJerk.datamodels.More;
-import ga.dryco.redditJerk.datamodels.T1;
-import ga.dryco.redditJerk.datamodels.T1Listing;
-import ga.dryco.redditJerk.datamodels.T1ListingData;
+import ga.dryco.redditjerk.datamodels.More;
+import ga.dryco.redditjerk.datamodels.T1Listing;
+import ga.dryco.redditjerk.datamodels.T1ListingData;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

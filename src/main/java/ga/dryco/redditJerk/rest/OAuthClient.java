@@ -1,8 +1,8 @@
-package ga.dryco.redditJerk.rest;
+package ga.dryco.redditjerk.rest;
 
 import com.google.gson.Gson;
-import ga.dryco.redditJerk.datamodels.AuthData;
-import ga.dryco.redditJerk.exceptions.OAuthClientException;
+import ga.dryco.redditjerk.datamodels.AuthData;
+import ga.dryco.redditjerk.exceptions.OAuthClientException;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;

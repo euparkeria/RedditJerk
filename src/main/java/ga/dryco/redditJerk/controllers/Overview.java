@@ -1,6 +1,6 @@
-package ga.dryco.redditJerk.controllers;
+package ga.dryco.redditjerk.controllers;
 
-import ga.dryco.redditJerk.datamodels.OverviewData;
+import ga.dryco.redditjerk.datamodels.OverviewData;
 
 public class Overview extends OverviewData {
 

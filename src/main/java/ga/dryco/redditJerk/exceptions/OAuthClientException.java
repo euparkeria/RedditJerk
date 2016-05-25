@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.exceptions;
+package ga.dryco.redditjerk.exceptions;
 
 
 public class OAuthClientException  extends RuntimeException {

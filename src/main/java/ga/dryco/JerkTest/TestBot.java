@@ -1,10 +1,10 @@
-package ga.dryco.JerkTest;
+package ga.dryco.jerktest;
 
-import ga.dryco.redditJerk.FromPast;
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.Sorting;
-import ga.dryco.redditJerk.controllers.Link;
+import ga.dryco.redditjerk.FromPast;
+import ga.dryco.redditjerk.Reddit;
+import ga.dryco.redditjerk.RedditApi;
+import ga.dryco.redditjerk.Sorting;
+import ga.dryco.redditjerk.controllers.Link;
 
 import java.util.ArrayList;
 import java.util.List;

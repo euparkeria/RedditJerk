@@ -1,9 +1,9 @@
-package ga.dryco.redditJerk.controllers;
+package ga.dryco.redditjerk.controllers;
 
-import ga.dryco.redditJerk.Distinguish;
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.datamodels.T1Data;
+import ga.dryco.redditjerk.Distinguish;
+import ga.dryco.redditjerk.Reddit;
+import ga.dryco.redditjerk.RedditApi;
+import ga.dryco.redditjerk.datamodels.T1Data;
 
 
 

@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 import java.util.ArrayList;
 import java.util.List;

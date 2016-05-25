@@ -1,19 +1,15 @@
-package ga.dryco.JerkTest;
+package ga.dryco.jerktest;
 
-import ga.dryco.redditJerk.Reddit;
-import ga.dryco.redditJerk.RedditApi;
-import ga.dryco.redditJerk.controllers.*;
-import ga.dryco.redditJerk.datamodels.PostData;
-import ga.dryco.redditJerk.datamodels.Thing;
+import ga.dryco.redditjerk.Reddit;
+import ga.dryco.redditjerk.RedditApi;
+import ga.dryco.redditjerk.controllers.*;
 
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
-public class test2 {
+public class Test2 {
     public static void main(String[] args) throws MalformedURLException {
         Reddit red = RedditApi.getRedditInstance("TestCliefnt34");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");

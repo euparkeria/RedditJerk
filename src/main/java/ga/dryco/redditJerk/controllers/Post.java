@@ -1,7 +1,7 @@
-package ga.dryco.redditJerk.controllers;
+package ga.dryco.redditjerk.controllers;
 
 
-import ga.dryco.redditJerk.Distinguish;
+import ga.dryco.redditjerk.Distinguish;
 
 /**
  * Interface for Links and Comments

@@ -1,4 +1,4 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 /**
  * returned data from /api/morechildren is converted to T1Listing and encaplusated in moreChildrenComments

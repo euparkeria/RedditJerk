@@ -1,6 +1,6 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
-import ga.dryco.redditJerk.controllers.Comment;
+import ga.dryco.redditjerk.controllers.Comment;
 
 /**
  * t1 is comment object

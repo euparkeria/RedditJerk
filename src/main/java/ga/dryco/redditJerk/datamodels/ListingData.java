@@ -1,9 +1,8 @@
-package ga.dryco.redditJerk.datamodels;
+package ga.dryco.redditjerk.datamodels;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Generated("org.jsonschema2pojo")
