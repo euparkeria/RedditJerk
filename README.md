@@ -4,7 +4,7 @@ RedditJerk is a simple and easy to use Reddit API wrapper for java.
 
 ######Still in development!
 
-###Example Usage:
+### Example Usage:
 
 
 ```Java
