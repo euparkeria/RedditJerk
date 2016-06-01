@@ -1,4 +1,4 @@
-package ga.dryco.jerktest;
+package ga.dryco.redditjerk;
 
 import ga.dryco.redditjerk.*;
 import ga.dryco.redditjerk.controllers.*;
