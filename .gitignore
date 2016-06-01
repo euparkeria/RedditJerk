@@ -1,0 +1,13 @@
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local todo list
+todo.txt
+
+# Other
+bin/
+*.swp
+
