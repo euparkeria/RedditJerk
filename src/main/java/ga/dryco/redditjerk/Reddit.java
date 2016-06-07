@@ -2,6 +2,7 @@ package ga.dryco.redditjerk;
 
 
 import ga.dryco.redditjerk.controllers.*;
+import ga.dryco.redditjerk.datamodels.ModeratorsData;
 import ga.dryco.redditjerk.datamodels.MoreChildren;
 
 import java.net.MalformedURLException;
@@ -24,6 +25,7 @@ public interface Reddit {
     void hide(String fullnameId);
     void unhide(String fullnameId);
     List<User> getSubredditModerators(String subreddit);
+    List<ModeratorsData> getSubredditModeratorsRaw(String subreddit);
     List<Comment> getSubredditComments(String subreddit, Integer limit);
     List<Subreddit> getInfo_subreddit(List<String> idList);
     List<Link> getInfo_link(List<String> idList);

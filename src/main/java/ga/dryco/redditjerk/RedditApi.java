@@ -58,10 +58,11 @@ public final class RedditApi implements Reddit  {
 
     /**
      *
-     * @param username reddit username
-     * @param password reddit password
+     * @param username reddit account username
+     * @param password reddit account password
      * @param clientId oAuth app id
      * @param secret oAuth Secret
+     * @return User object of the logged in user
      */
     public User login(String username, String password, String clientId, String secret) {
         this.ApiURL = ConfigValues.OAUTH_URL.toString();
@@ -72,8 +73,8 @@ public final class RedditApi implements Reddit  {
 
     /**
      *
-     * @param username user to get
-     * @return User
+     * @param username username to get
+     * @return User object
      *
      */
 
@@ -85,11 +86,26 @@ public final class RedditApi implements Reddit  {
     }
 
 
+    /**
+     *
+     * @return User object of the logged in user
+     */
+
+
     private User me() {
         String requesturl = ApiURL + Endpoints.ME;
         return this.getDataObject(makeHttpRequest(requesturl), User.class);
 
     }
+
+    /**
+     *
+     *
+     * @param url Url of the reddit thread
+     * @param sort Sorting, top, hot, new
+     * @return RedditThread object
+     * @throws MalformedURLException
+     */
 
     public RedditThread getRedditThread(String url, Sorting sort) throws MalformedURLException {
         URL purl = new URL(url);
@@ -100,8 +116,16 @@ public final class RedditApi implements Reddit  {
         return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }
 
+
+    /**
+     *
+     * @param idList list of fullname ids for moreChildren comments
+     * @param linkId Id of the Link object
+     * @param sort Sorting
+     * @return MoreChildren object
+     */
     public MoreChildren getMoreChildren(List<String> idList, String linkId, Sorting sort){
-        //System.out.println("Number of ids:" + idList);
+
         String idListComma = StringUtils.join(idList, ",");
         String requesturl = String.format(ApiURL + Endpoints.MORE_CHILDREN, idListComma, linkId, sort);
 
@@ -116,6 +140,11 @@ public final class RedditApi implements Reddit  {
     }
 
 
+    /**
+     *
+     * @param subreddit subreddit name
+     * @return Subreddit object
+     */
     public Subreddit getSubreddit(String subreddit)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT, subreddit);
 
@@ -123,12 +152,25 @@ public final class RedditApi implements Reddit  {
     }
 
 
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of comments to get
+     * @param sort Sorting
+     * @return returns list of Comment objects
+     */
     public final List<Comment> getUserComments(String username, Integer limit, Sorting sort) {
         String requesturl = String.format(ApiURL + Endpoints.USER_COMMENTS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T1Listing.class).stream().map(comm -> (Comment) comm).collect(Collectors.toList());
     }
 
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of comments to get
+     * @return list of Comment objects
+     */
     public final List<Comment> getUserGilded(String username, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.USER_GILDED, username, limit);
 
@@ -136,6 +178,13 @@ public final class RedditApi implements Reddit  {
 
     }
 
+
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of links to get
+     * @return list of Link objects
+     */
     public final List<Link> getUserUpvoted(String username, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.USER_UPVOTED, username, limit);
 
@@ -143,6 +192,12 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of links to get
+     * @return list of Link objects
+     */
     public final List<Link> getUserDownvoted(String username, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.USER_DOWNVOTED, username, limit);
 
@@ -150,6 +205,12 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of links to get
+     * @return list of Link objects
+     */
     public final List<Link> getUserHidden(String username, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.USER_HIDDEN, username, limit);
 
@@ -157,12 +218,27 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param username reddit username
+     * @param limit number of links to get
+     * @param sort Sorting
+     * @return list of Link objects
+     */
     public final List<Link> getUserSubmissions(String username, Integer limit, Sorting sort)  {
         String requesturl = String.format(ApiURL + Endpoints.USER_SUBS, username, limit, sort);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
 
+    /**
+     *
+     * @param subreddit Subreddit name
+     * @param limit number of links to get
+     * @param sort Sorting
+     * @param timeperiod From how far back to get links
+     * @return list of Link objects
+     */
     public List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, FromPast timeperiod)  {
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod );
 
@@ -170,7 +246,12 @@ public final class RedditApi implements Reddit  {
     }
 
 
-
+    /**
+     *
+     * @param subreddit subreddit name
+     * @param limit number of comments to get
+     * @return list of comment objects
+     */
     public List<Comment> getSubredditComments(String subreddit, Integer limit){
         String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_COMMENTS, subreddit, limit);
 
@@ -237,7 +318,7 @@ public final class RedditApi implements Reddit  {
      * @param subreddit subreddit name
      * @return returns a list with ModeratorsData
      */
-    private List<ModeratorsData> getSubredditModeratorsRaw(String subreddit){
+    public List<ModeratorsData> getSubredditModeratorsRaw(String subreddit){
         String requesturl = String.format(ApiURL + Endpoints.SUB_MODERATORS, subreddit);
 
 
@@ -248,18 +329,26 @@ public final class RedditApi implements Reddit  {
     /**
      *
      * @param fullnameId Thing Id
-     * @param dir "1" for upvote, "-1" for downvote
+     * @param direction "1" for upvote, "-1" for downvote
      *
      */
-    public void vote(String fullnameId, String dir)  {
+    public void vote(String fullnameId, String direction)  {
         String requesturl = ApiURL + Endpoints.VOTE;
         List<NameValuePair> urlParameters = new ArrayList<>();
         urlParameters.add(new BasicNameValuePair("id", fullnameId));
-        urlParameters.add(new BasicNameValuePair("dir", dir));
+        urlParameters.add(new BasicNameValuePair("dir", direction));
         this.makeHttpRequest(requesturl, urlParameters);
     }
 
 
+    /**
+     *
+     * @param subreddit Subreddit name in which to post a new submission
+     * @param title Title of the submission
+     * @param bodyOrUrl Url or body of Submission
+     * @param kind should be either "link" or "self"
+     * @return Link object
+     */
     public final Link Submit(String subreddit, String title, String bodyOrUrl, String kind)  {
         String requesturl = ApiURL + Endpoints.SUBMIT;
 
@@ -278,6 +367,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param fullnameId Fullname Id of an object to delete
+     */
     public final void delete(String fullnameId) {
         String requesturl = ApiURL + Endpoints.DELETE;
 
@@ -289,6 +382,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param subreddit subreddit name
+     */
     public final void subscribe(String subreddit){
         String requesturl = ApiURL + Endpoints.SUBSCRIBE;
 
@@ -300,6 +397,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param subreddit subreddit name
+     */
     public final void unsubscribe(String subreddit){
         String requesturl = ApiURL + Endpoints.SUBSCRIBE;
 
@@ -311,7 +412,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
-
+    /**
+     *
+     * @param fullnameId Fullname Id of the object to hide
+     */
     public final void hide(String fullnameId)  {
         String requesturl = ApiURL + Endpoints.HIDE;
 
@@ -321,6 +425,10 @@ public final class RedditApi implements Reddit  {
         this.makeHttpRequest(requesturl, urlParameters);
     }
 
+    /**
+     *
+     * @param fullnameId ullname Id of the object to unhide
+     */
     public final void unhide(String fullnameId) {
         String requesturl = ApiURL + Endpoints.UNHIDE;
 
@@ -350,7 +458,12 @@ public final class RedditApi implements Reddit  {
     }
 
 
-
+    /**
+     *
+     * @param fullnameId Fullname id of an object to edit
+     * @param text Text of the editted object
+     * @return Either Comment or Link object
+     */
     public final Post edit(String fullnameId, String text) {
         String requesturl = ApiURL + Endpoints.EDIT;
 
@@ -369,6 +482,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param subreddit subreddit name
+     */
     public final void acceptModInvite(String subreddit){
         String requesturl = String.format(ApiURL + Endpoints.ACCEPT_MOD_INVITE, subreddit);
 
@@ -379,6 +496,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param fullnameId fullname id of an object to approve as moderator
+     */
     public final void approve(String fullnameId){
         String requesturl = ApiURL + Endpoints.APPROVE;
 
@@ -389,6 +510,12 @@ public final class RedditApi implements Reddit  {
 
     }
 
+
+    /**
+     *
+     * @param fullnameId fullname id of an object to remove as moderator
+     * @param spam Is it Spam or not
+     */
     public final void remove(String fullnameId, Boolean spam){
         String requesturl = ApiURL + Endpoints.REMOVE;
 
@@ -400,6 +527,11 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param fullnameId Fullname id of an object to distinguish
+     * @param distinguish Distinguish
+     */
     public final void distinguish(String fullnameId, Distinguish distinguish){
         String requesturl = ApiURL + Endpoints.DISTINGUISH;
 
@@ -414,12 +546,11 @@ public final class RedditApi implements Reddit  {
 
 
 
-
     /**
      * The reddit API requires subreddit fullId instead of Name to leave moderation so we do another api call here
      * to get the fullid from a subreddit name
      *
-     * @param subreddit
+     * @param subreddit subreddit name
      */
     public final void leaveModeration(String subreddit){
         String requesturl = ApiURL + Endpoints.LEAVE_MODERATOR;
@@ -433,6 +564,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param subreddit Subreddit name
+     */
     public final void leaveContributor(String subreddit){
         String requesturl = ApiURL + Endpoints.LEAVE_CONTRIBUTOR;
 
@@ -445,6 +580,10 @@ public final class RedditApi implements Reddit  {
 
     }
 
+    /**
+     *
+     * @param thingFullId Fullname Id of a thing
+     */
     public final void ignoreReports(String thingFullId){
         String requesturl = ApiURL + Endpoints.IGNORE_REPORTS;
 
@@ -455,6 +594,11 @@ public final class RedditApi implements Reddit  {
 
 
     }
+
+    /**
+     *
+     * @param thingFullId Full name id of a thing
+     */
 
     public final void unignoreReports(String thingFullId){
         String requesturl = ApiURL + Endpoints.UNIGNORE_REPORTS;
