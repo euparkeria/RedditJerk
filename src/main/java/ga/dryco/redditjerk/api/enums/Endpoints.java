@@ -49,7 +49,8 @@ public enum Endpoints {
     MARK_NSFW("/api/marknsfw"),
     UNMARK_NSFW("/api/unmarknsfw"),
     LOCK("/api/lock"),
-    UNLOCK("/api/unlock")
+    UNLOCK("/api/unlock"),
+    GIVE_GOLD("/api/v1/gold/give/username")
     ;
 
 

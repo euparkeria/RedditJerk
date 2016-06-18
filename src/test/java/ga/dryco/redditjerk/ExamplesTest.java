@@ -24,6 +24,9 @@ public class ExamplesTest {
         //getting a redditor object
         User jerkUser = red.getUser("reditor123");
 
+        //Give user reditor123 six months worth of Reddit Gold
+        red.giveGold("reditor123", 6);
+
         //getting user comments, gets 200 newest comments
         List<Comment> clist = jerkUser.getComments(200, Sorting.NEW);
 

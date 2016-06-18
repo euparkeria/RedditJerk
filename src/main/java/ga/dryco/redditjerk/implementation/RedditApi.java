@@ -173,6 +173,24 @@ public final class RedditApi implements Reddit {
 
     }
 
+    /**
+     *
+     * @param username username to give gold to
+     * @param months for how many months, must be between 1 and 36
+     */
+    public final void giveGold(String username, Integer months){
+        String requesturl = String.format(ApiURL + Endpoints.GIVE_GOLD, username);
+
+        List<NameValuePair> urlParameters = new ArrayList<>();
+        urlParameters.add(new BasicNameValuePair("months", months.toString()));
+        urlParameters.add(new BasicNameValuePair("username", username));
+
+
+        this.makeHttpRequest(requesturl, urlParameters);
+
+
+    }
+
 
     /**
      *
@@ -819,8 +837,6 @@ public final class RedditApi implements Reddit {
         }
 
         return listinglist;
-
-
 
     }
 

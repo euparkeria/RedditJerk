@@ -22,6 +22,7 @@ public interface UserApi {
     List<Link> getUserUpvoted(String username, Integer limit);
     List<Comment> getUserGilded(String username, Integer limit);
     List<Link> getUserSubmissions(String username, Integer limit, Sorting sort);
+    void giveGold(String username, Integer months);
 
 
 }
