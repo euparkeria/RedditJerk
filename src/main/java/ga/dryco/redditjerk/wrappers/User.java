@@ -1,7 +1,7 @@
 package ga.dryco.redditjerk.wrappers;
 
-import ga.dryco.redditjerk.api.RedditApi;
-import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.api.Reddit;
+import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.datamodels.T2Data;
 
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class User extends T2Data {
 
-    private RedditApi rApi = Reddit.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     public List<Link> getSubmitted(Integer limit)  {
        return rApi.getUserSubmissions(super.getName(), limit, Sorting.NEW);

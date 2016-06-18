@@ -1,6 +1,10 @@
 package ga.dryco.redditjerk.exceptions;
 
 
+/**
+ * General RedditJerk Exception
+ *
+ */
 public class RedditJerkException  extends RuntimeException {
     public RedditJerkException(){
         super();

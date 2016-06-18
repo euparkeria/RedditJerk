@@ -10,6 +10,9 @@ import ga.dryco.redditjerk.datamodels.ModeratorsData;
 
 import java.util.List;
 
+/**
+ * Subreddit related functions
+ */
 
 public interface SubredditApi {
 
@@ -20,6 +23,7 @@ public interface SubredditApi {
     List<Comment> getSubredditComments(String subreddit, Integer limit);
     void subscribe(String subreddit);
     void unsubscribe(String subreddit);
+    List<Subreddit> getInfo_subreddit(List<String> idList);
 
 
 }

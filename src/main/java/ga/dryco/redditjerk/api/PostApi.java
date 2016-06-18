@@ -10,6 +10,9 @@ import ga.dryco.redditjerk.datamodels.MoreChildren;
 import java.net.MalformedURLException;
 import java.util.List;
 
+/**
+ * Comment and Link related functions
+ */
 
 public interface PostApi {
     RedditThread getRedditThread(String url, Sorting sort) throws MalformedURLException;
@@ -21,4 +24,6 @@ public interface PostApi {
     void unhide(String fullnameId);
     MoreChildren getMoreChildren(List<String> idList, String linkId, Sorting sort);
     Link Submit(String subreddit, String title, String bodyOrUrl, String kind);
+    List<Link> getInfo_link(List<String> idList);
+    List<Comment> getInfo_comment(List<String> idList);
 }

@@ -1,9 +1,9 @@
 package ga.dryco.redditjerk;
 
-import ga.dryco.redditjerk.api.RedditApi;
+import ga.dryco.redditjerk.api.Reddit;
 import ga.dryco.redditjerk.api.enums.FromPast;
 import ga.dryco.redditjerk.api.enums.Sorting;
-import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.wrappers.Link;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class TestBot {
         keywords.add("Windows");
         keywords.add("Fl Studio");
         keywords.add("Ahsoka");
-        RedditApi red = Reddit.getRedditInstance("TestClient34");
+        Reddit red = RedditApi.getRedditInstance("TestClient34");
 
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 

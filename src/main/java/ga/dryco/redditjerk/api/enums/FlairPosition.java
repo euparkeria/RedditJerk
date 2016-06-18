@@ -1,5 +1,9 @@
 package ga.dryco.redditjerk.api.enums;
 
+
+/**
+ * Values for flair possition
+ */
 public enum FlairPosition {
     LEFT("left"),
     RIGHT("right");

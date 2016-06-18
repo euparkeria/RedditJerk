@@ -1,5 +1,10 @@
 package ga.dryco.redditjerk.api.enums;
 
+
+/**
+ *
+ * Moderation page values
+ */
 public enum Moderation {
     REPORTED("reports"),
     SPAM("spam"),

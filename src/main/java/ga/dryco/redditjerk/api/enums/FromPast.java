@@ -1,5 +1,10 @@
 package ga.dryco.redditjerk.api.enums;
 
+
+/**
+ * Timespan values for posts
+ *
+ */
 public enum FromPast {
     HOUR("hour"),
     DAY("day"),

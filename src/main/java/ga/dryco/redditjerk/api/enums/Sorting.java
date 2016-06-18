@@ -1,5 +1,9 @@
 package ga.dryco.redditjerk.api.enums;
 
+/**
+ * Post sorting values
+ *
+ */
 public enum Sorting {
 
     NEW("new"),

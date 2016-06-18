@@ -1,5 +1,10 @@
 package ga.dryco.redditjerk.api.enums;
 
+
+/**
+ * All the implmented Api Endpoints
+ *
+ */
 public enum Endpoints {
     USER("user/%s/about/"),
     ME("api/v1/me"),

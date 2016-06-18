@@ -2,7 +2,10 @@ package ga.dryco.redditjerk.api;
 
 import ga.dryco.redditjerk.api.enums.FlairPosition;
 
-
+/**
+ * Functions regarding the reddit Flair feature
+ *
+ */
 public interface FlairApi {
     void deleteFlair(String subreddit, String username);
     void clearFlairTemplates(String subreddit, String flairtype);

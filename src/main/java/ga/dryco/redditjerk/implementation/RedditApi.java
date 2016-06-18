@@ -23,14 +23,14 @@ import java.util.stream.Collectors;
 /**
  * Default api implementation.
  */
-public final class Reddit implements RedditApi{
+public final class RedditApi implements Reddit {
     private final OAuthClient client;
 
 
     private String ApiURL = ConfigValues.API_URL.toString();
     private final Gson gson;
 
-    private Reddit(String useragent){
+    private RedditApi(String useragent){
         this.client = new OAuthClient(useragent);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -44,15 +44,15 @@ public final class Reddit implements RedditApi{
 
     }
 
-    private static Reddit ApiINSTANCE;
+    private static RedditApi ApiINSTANCE;
 
-    public static Reddit getRedditInstance(String userAgent){
+    public static RedditApi getRedditInstance(String userAgent){
         if(ApiINSTANCE == null)
-            ApiINSTANCE = new Reddit(userAgent);
+            ApiINSTANCE = new RedditApi(userAgent);
         return ApiINSTANCE;
     }
 
-    public static Reddit getRedditInstance(){
+    public static RedditApi getRedditInstance(){
         return ApiINSTANCE;
     }
 

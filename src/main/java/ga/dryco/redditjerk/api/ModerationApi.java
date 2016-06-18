@@ -8,7 +8,7 @@ import ga.dryco.redditjerk.wrappers.Link;
 import java.util.List;
 
 /**
- * Created by madcat on 18/06/2016.
+ * Moderation functions
  */
 public interface ModerationApi {
 

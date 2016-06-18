@@ -1,7 +1,7 @@
 package ga.dryco.redditjerk.wrappers;
 
-import ga.dryco.redditjerk.api.RedditApi;
-import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.api.Reddit;
+import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.datamodels.More;
 import ga.dryco.redditjerk.datamodels.T1;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RedditThread extends RedditThreadData {
 
-    private RedditApi rApi = Reddit.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     private List<Comment> flatComments;
     private boolean alreadyFlattened = false;

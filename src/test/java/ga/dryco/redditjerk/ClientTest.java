@@ -1,7 +1,7 @@
 package ga.dryco.redditjerk;
 
 import ga.dryco.redditjerk.api.enums.Sorting;
-import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.wrappers.*;
 
 import java.net.MalformedURLException;
@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 
 public class ClientTest {
     public static void main(String[] args) throws MalformedURLException {
-        Reddit rApi = Reddit.getRedditInstance("Test clv1");
+        RedditApi rApi = RedditApi.getRedditInstance("Test clv1");
 
 
         User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");

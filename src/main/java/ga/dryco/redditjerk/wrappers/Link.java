@@ -1,13 +1,13 @@
 package ga.dryco.redditjerk.wrappers;
 
 import ga.dryco.redditjerk.api.enums.Distinguish;
-import ga.dryco.redditjerk.api.RedditApi;
-import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.api.Reddit;
+import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.datamodels.T3Data;
 
 public class Link extends T3Data implements Post{
 
-    private RedditApi rApi = Reddit.getRedditInstance();
+    private Reddit rApi = RedditApi.getRedditInstance();
 
     public void downvote()  {
         rApi.vote(super.getName(), "-1");

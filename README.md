@@ -10,7 +10,7 @@ RedditJerk is a simple and easy to use Reddit API wrapper for java.
 ```Java
  
     //Getting the api instance with useragent as parameter:
-    RedditApi red = Reddit.getRedditInstance("RedditApi client Test v1313");
+    Reddit red = RedditApi.getRedditInstance("Reddit client Test v1313");
 
     //OAuth login, returns User object of the logged in account
     User myUser = red.login("<username>", "<password>", "<client_id>", "<client_secret>");

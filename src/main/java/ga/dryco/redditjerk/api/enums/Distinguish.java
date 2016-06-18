@@ -1,6 +1,11 @@
 package ga.dryco.redditjerk.api.enums;
 
 
+/**
+ * Contains values for post Distinguish
+ *
+ */
+
 public enum  Distinguish {
     YES("yes"),
     NO("no"),

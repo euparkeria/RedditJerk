@@ -7,6 +7,10 @@ import ga.dryco.redditjerk.wrappers.User;
 
 import java.util.List;
 
+/**
+ * User related functions
+ *
+ */
 
 public interface UserApi {
     User login(String username, String password, String clientId, String secret);
