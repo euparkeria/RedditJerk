@@ -1,4 +1,4 @@
-package ga.dryco.redditjerk;
+package ga.dryco.redditjerk.api.enums;
 
 public enum Sorting {
 

@@ -1,7 +1,7 @@
 package ga.dryco.redditjerk.datamodels.deserializers;
 
 import com.google.gson.*;
-import ga.dryco.redditjerk.controllers.Comment;
+import ga.dryco.redditjerk.wrappers.Comment;
 import ga.dryco.redditjerk.datamodels.T1;
 
 import java.lang.reflect.Type;

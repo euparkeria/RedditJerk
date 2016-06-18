@@ -2,7 +2,7 @@ package ga.dryco.redditjerk.datamodels.deserializers;
 
 import com.google.gson.*;
 
-import ga.dryco.redditjerk.controllers.RedditThread;
+import ga.dryco.redditjerk.wrappers.RedditThread;
 import ga.dryco.redditjerk.datamodels.T1Listing;
 import ga.dryco.redditjerk.datamodels.T3;
 

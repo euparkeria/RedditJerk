@@ -1,7 +1,12 @@
 package ga.dryco.redditjerk;
 
-import ga.dryco.redditjerk.*;
-import ga.dryco.redditjerk.controllers.*;
+import ga.dryco.redditjerk.api.RedditApi;
+import ga.dryco.redditjerk.api.enums.Distinguish;
+import ga.dryco.redditjerk.api.enums.FromPast;
+import ga.dryco.redditjerk.api.enums.Moderation;
+import ga.dryco.redditjerk.api.enums.Sorting;
+import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.wrappers.*;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -11,7 +16,7 @@ public class ExamplesTest {
 
 
         //Getting the api instance with useragent as parameter:
-        Reddit red = RedditApi.getRedditInstance("Reddit client Test v1313");
+        RedditApi red = Reddit.getRedditInstance("RedditApi client Test v1313");
 
         //OAuth login, returns User object of the logged in account
         User myUser = red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");

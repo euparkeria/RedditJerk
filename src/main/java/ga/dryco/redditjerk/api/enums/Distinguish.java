@@ -1,8 +1,6 @@
-package ga.dryco.redditjerk;
+package ga.dryco.redditjerk.api.enums;
 
-/**
- * Created by madcat on 15/05/2016.
- */
+
 public enum  Distinguish {
     YES("yes"),
     NO("no"),

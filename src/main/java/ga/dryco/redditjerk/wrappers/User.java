@@ -1,8 +1,8 @@
-package ga.dryco.redditjerk.controllers;
+package ga.dryco.redditjerk.wrappers;
 
-import ga.dryco.redditjerk.Reddit;
-import ga.dryco.redditjerk.RedditApi;
-import ga.dryco.redditjerk.Sorting;
+import ga.dryco.redditjerk.api.RedditApi;
+import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.datamodels.T2Data;
 
 import java.util.List;
@@ -11,11 +11,7 @@ import java.util.Objects;
 
 public class User extends T2Data {
 
-    private Reddit rApi = RedditApi.getRedditInstance();
-
-    public Overview getOverview(Integer limit, Sorting sort)  {
-        return rApi.getOverview(super.getName(), limit, sort);
-    }
+    private RedditApi rApi = Reddit.getRedditInstance();
 
     public List<Link> getSubmitted(Integer limit)  {
        return rApi.getUserSubmissions(super.getName(), limit, Sorting.NEW);

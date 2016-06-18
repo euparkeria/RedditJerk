@@ -1,10 +1,12 @@
-package ga.dryco.redditjerk;
+package ga.dryco.redditjerk.implementation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.sun.deploy.util.StringUtils;
-import ga.dryco.redditjerk.controllers.*;
+import ga.dryco.redditjerk.api.*;
+import ga.dryco.redditjerk.api.enums.*;
+import ga.dryco.redditjerk.wrappers.*;
 import ga.dryco.redditjerk.datamodels.*;
 import ga.dryco.redditjerk.datamodels.deserializers.*;
 import ga.dryco.redditjerk.exceptions.RedditJerkException;
@@ -21,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Default api implementation.
  */
-public final class Reddit implements RedditApi, ModerationApi  {
+public final class Reddit implements RedditApi{
     private final OAuthClient client;
 
 
@@ -35,7 +37,6 @@ public final class Reddit implements RedditApi, ModerationApi  {
         gsonBuilder.registerTypeAdapter(T1.class, new T1Deserializer());
         gsonBuilder.registerTypeAdapter(T3.class, new T3Deserializer());
         gsonBuilder.registerTypeAdapter(RedditThread.class, new ThreadDeserializer());
-        gsonBuilder.registerTypeAdapter(OverviewData.class, new OverviewDeserializer());
         gsonBuilder.registerTypeAdapter(PostReturn.class, new PostReturnDeserializer());
         gsonBuilder.registerTypeAdapter(T1Listing.class, new T1ListingDeserializer());
         gsonBuilder.registerTypeAdapter(MoreChildren.class, new MoreChildrenDeserializer());
@@ -43,15 +44,15 @@ public final class Reddit implements RedditApi, ModerationApi  {
 
     }
 
-    private static RedditApi ApiINSTANCE;
+    private static Reddit ApiINSTANCE;
 
-    public static RedditApi getRedditInstance(String userAgent){
+    public static Reddit getRedditInstance(String userAgent){
         if(ApiINSTANCE == null)
             ApiINSTANCE = new Reddit(userAgent);
         return ApiINSTANCE;
     }
 
-    public static RedditApi getRedditInstance(){
+    public static Reddit getRedditInstance(){
         return ApiINSTANCE;
     }
 
@@ -132,12 +133,6 @@ public final class Reddit implements RedditApi, ModerationApi  {
         return this.getDataObject(makeHttpRequest(requesturl), MoreChildren.class);
     }
 
-
-    public Overview getOverview(String username, Integer limit, Sorting sort)  {
-        String requesturl = String.format(ApiURL + Endpoints.OVERVIEW, username, limit, sort);
-
-        return this.getDataObject(makeHttpRequest(requesturl), Overview.class);
-    }
 
 
     /**

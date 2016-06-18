@@ -1,13 +1,21 @@
-package ga.dryco.redditjerk.controllers;
+package ga.dryco.redditjerk.wrappers;
 
-import ga.dryco.redditjerk.Distinguish;
-import ga.dryco.redditjerk.Reddit;
-import ga.dryco.redditjerk.RedditApi;
-import ga.dryco.redditjerk.datamodels.T3Data;
+import ga.dryco.redditjerk.api.enums.Distinguish;
+import ga.dryco.redditjerk.api.RedditApi;
+import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.datamodels.T1Data;
 
-public class Link extends T3Data implements Post{
 
-    private Reddit rApi = RedditApi.getRedditInstance();
+
+
+
+public class Comment extends T1Data implements Post {
+
+    private RedditApi rApi = Reddit.getRedditInstance();
+
+    public Comment reply(String text) {
+        return rApi.reply(super.getName(), text);
+    }
 
     public void downvote()  {
         rApi.vote(super.getName(), "-1");
@@ -17,16 +25,12 @@ public class Link extends T3Data implements Post{
         rApi.vote(super.getName(), "1");
     }
 
-    public Comment reply(String text)  {
-        return rApi.reply(super.getName(), text);
-    }
-
     public void delete() {
         rApi.delete(super.getName());
     }
 
-    public Link edit(String text)  {
-        return (Link) rApi.edit(super.getName(), text);
+    public Comment edit(String text)  {
+        return (Comment) rApi.edit(super.getName(), text);
     }
 
     public void hide(){
@@ -48,4 +52,5 @@ public class Link extends T3Data implements Post{
     public void distinguish(Distinguish distinguish){
         rApi.distinguish(super.getName(), distinguish);
     }
+
 }

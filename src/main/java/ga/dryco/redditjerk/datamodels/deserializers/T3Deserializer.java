@@ -2,7 +2,7 @@ package ga.dryco.redditjerk.datamodels.deserializers;
 
 import com.google.gson.*;
 
-import ga.dryco.redditjerk.controllers.Link;
+import ga.dryco.redditjerk.wrappers.Link;
 import ga.dryco.redditjerk.datamodels.T3;
 
 import java.lang.reflect.Type;

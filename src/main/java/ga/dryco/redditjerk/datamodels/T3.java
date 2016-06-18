@@ -1,6 +1,6 @@
 package ga.dryco.redditjerk.datamodels;
 
-import ga.dryco.redditjerk.controllers.Link;
+import ga.dryco.redditjerk.wrappers.Link;
 
 /**
  * t3 type objects Links

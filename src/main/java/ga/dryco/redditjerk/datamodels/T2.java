@@ -1,6 +1,6 @@
 package ga.dryco.redditjerk.datamodels;
 
-import ga.dryco.redditjerk.controllers.User;
+import ga.dryco.redditjerk.wrappers.User;
 
 /**
  * T2 is user

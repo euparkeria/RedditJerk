@@ -1,16 +1,16 @@
-package ga.dryco.redditjerk.controllers;
+package ga.dryco.redditjerk.wrappers;
 
-import ga.dryco.redditjerk.FromPast;
-import ga.dryco.redditjerk.Reddit;
-import ga.dryco.redditjerk.RedditApi;
-import ga.dryco.redditjerk.Sorting;
+import ga.dryco.redditjerk.api.enums.FromPast;
+import ga.dryco.redditjerk.api.RedditApi;
+import ga.dryco.redditjerk.implementation.Reddit;
+import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.datamodels.T5Data;
 import java.util.List;
 
 
 public class Subreddit extends T5Data implements Thingy{
 
-    private Reddit rApi = RedditApi.getRedditInstance();
+    private RedditApi rApi = Reddit.getRedditInstance();
 
     public List<Link> getHot(Integer limit)  {
        return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.HOT, FromPast.DAY);

@@ -1,6 +1,6 @@
-package ga.dryco.redditjerk;
+package ga.dryco.redditjerk.api.enums;
 
-enum Endpoints {
+public enum Endpoints {
     USER("user/%s/about/"),
     ME("api/v1/me"),
     OVERVIEW("user/%s/?limit=%d&sort=%s"),

@@ -1,7 +1,7 @@
-package ga.dryco.redditjerk.controllers;
+package ga.dryco.redditjerk.wrappers;
 
 
-import ga.dryco.redditjerk.Distinguish;
+import ga.dryco.redditjerk.api.enums.Distinguish;
 
 /**
  * Interface for Links and Comments
