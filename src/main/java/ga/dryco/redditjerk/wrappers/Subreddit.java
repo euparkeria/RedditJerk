@@ -51,6 +51,10 @@ public class Subreddit extends T5Data implements Thingy{
         return rApi.getSubredditPage(super.getDisplayName(), limit, Sorting.RISING, FromPast.DAY);
     }
 
+    public RedditThread getRandom(){
+        return rApi.getRandomPostFromSubreddit(super.getDisplayName());
+    }
+
     public List<Comment> getComments(Integer limit){
         return rApi.getSubredditComments(super.getDisplayName(), limit);
     }

@@ -17,7 +17,7 @@ public enum Endpoints {
     USER_DOWNVOTED("user/%s/downvoted/?limit=%d"),
     USER_HIDDEN("user/%s/hidden/?limit=%d"),
     USER_SAVED("user/%s/saved/?limit=%d"),
-    SUBREDDIT_PAGE("/r/%s/%s/?limit=%d&t=%s"),
+    SUBREDDIT_PAGE("r/%s/%s/?limit=%d&t=%s"),
     SUBREDDIT_COMMENTS("/r/%s/comments/?limit=%d"),
     VOTE("/api/vote"),
     SUBMIT("/api/submit"),

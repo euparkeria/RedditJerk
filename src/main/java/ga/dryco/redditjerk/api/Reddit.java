@@ -9,5 +9,4 @@ package ga.dryco.redditjerk.api;
 public interface Reddit extends FlairApi, ModerationApi, PostApi, SubredditApi, UserApi {
 
 
-
 }

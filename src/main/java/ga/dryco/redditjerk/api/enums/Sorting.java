@@ -12,6 +12,7 @@ public enum Sorting {
     CONTROVERSIAL("controversial"),
     RISING("rising");
 
+
     private String sortingString;
 
     Sorting(String sortingString){

@@ -11,7 +11,7 @@ public abstract class ListingData {
     @Expose
     private String modhash;
     /**
-     * This class at first used generics to decide the Children type but the nested generics were getting to
+     * This class at first used generics to decide the Children type but the nested generics were getting too
      * confusing so now it is subclassed for every type of Children
      *
      */

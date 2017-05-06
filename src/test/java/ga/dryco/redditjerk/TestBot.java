@@ -5,6 +5,7 @@ import ga.dryco.redditjerk.api.enums.FromPast;
 import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.wrappers.Link;
+import ga.dryco.redditjerk.wrappers.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,12 @@ import java.util.List;
 public class TestBot {
     public static void main(String[] args){
 
+
+
+
         List<String> done = new ArrayList<>();
         List<String> keywords = new ArrayList<>();
-        Integer submsLastRun = 0;
+        int submsLastRun = 0;
 
         keywords.add("Linux");
         keywords.add("Cisco");
@@ -24,7 +28,7 @@ public class TestBot {
         keywords.add("Fl Studio");
         keywords.add("Ahsoka");
         Reddit red = RedditApi.getRedditInstance("TestClient34");
-
+        User myUser = red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
         //red.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         while (true){

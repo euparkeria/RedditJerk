@@ -117,6 +117,14 @@ public final class RedditApi implements Reddit {
         return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
     }
 
+    public RedditThread getRandomPostFromSubreddit(String subreddit){
+
+        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, "random", 1, "");
+
+        return this.getDataObject(makeHttpRequest(requesturl), RedditThread.class);
+
+    }
+
 
     /**
      *
@@ -253,7 +261,7 @@ public final class RedditApi implements Reddit {
      * @return list of Link objects
      */
     public List<Link> getSubredditPage(String subreddit, Integer limit, Sorting sort, FromPast timeperiod)  {
-        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod );
+        String requesturl = String.format(ApiURL + Endpoints.SUBREDDIT_PAGE, subreddit, sort, limit, timeperiod);
 
         return this.getListings(requesturl, limit, T3Listing.class).stream().map(lnk -> (Link) lnk).collect(Collectors.toList());
     }
@@ -738,6 +746,14 @@ public final class RedditApi implements Reddit {
 
 
     }
+
+    /**
+     *
+     * @param subreddit name of the subreddit
+     * @param link_fullName fullname id of the subreddit, must start with t3_
+     * @param text flair text
+     * @param css_class css class
+     */
 
     public void linkFlair(String subreddit, String link_fullName, String text, String css_class){
         String requesturl = String.format(ApiURL + Endpoints.FLAIR, subreddit);

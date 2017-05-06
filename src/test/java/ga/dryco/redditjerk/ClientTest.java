@@ -1,10 +1,12 @@
 package ga.dryco.redditjerk;
 
+import ga.dryco.redditjerk.api.enums.FromPast;
 import ga.dryco.redditjerk.api.enums.Sorting;
 import ga.dryco.redditjerk.implementation.RedditApi;
 import ga.dryco.redditjerk.wrappers.*;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 
 public class ClientTest {
@@ -12,7 +14,7 @@ public class ClientTest {
         RedditApi rApi = RedditApi.getRedditInstance("Test clv1");
 
 
-        User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
+        //User myUser = rApi.login("RedditJerkTest", "jerkjerkjerk", "WoXLiKdjulE09Q", "QoG2unmpgAum-IQ92NDhhNy-UKs");
 
         //rApi.subscribe("flairtestsubreddit");
 
@@ -26,10 +28,15 @@ public class ClientTest {
 
         //rApi.clearFlairTemplates("flairtestsubreddit", "USER_FLAIR");
         //rApi.leaveModeration("flairtestsubreddit");
-     //   rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST", "");
-      //  rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!", "");
+      //  rApi.linkFlair("flairtestsubreddit", "t3_4jlhec", "GREATEST2", "");
+      //  rApi.userFlair("flairtestsubreddit", "seldonn", "CRAP!!2", "");
 
 
+        Subreddit subr = rApi.getSubreddit("Socialism");
+        System.out.println(subr.getRandom().getSubmissionPost().getData().getTitle());
+
+
+        /*
         RedditThread rthread1 = rApi.getRedditThread("https://www.reddit.com/r/science/comments/4kvf0i/nasa_ama_we_are_expanding_the_first_humanrated/", Sorting.NEW);
         rthread1.fetchMoreComments(true);
         System.out.println(rthread1.getFlatComments().size());
@@ -38,6 +45,9 @@ public class ClientTest {
         }
 
         System.out.println(rthread1.getFlatComments().size());
+
+        **/
+
 
 
 /*
