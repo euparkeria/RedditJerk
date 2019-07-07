@@ -48,7 +48,7 @@ RedditJerk is a simple and easy to use Reddit API wrapper for java.
     //Unsubscribe
     amSubr.unsubscribe();
 
-    //Subscribe and unsibscribe from subreddits without gettinga Subreddit object
+    //Subscribe and unsibscribe from subreddits without getting a Subreddit object
     red.subscribe("Socialism");
     red.unsubscribe("Funny");
 
